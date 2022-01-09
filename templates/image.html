@@ -1,0 +1,4 @@
+<h1>u are good going </h1>
+{{% for photo in myimage %}}
+    <a target="_blank" href="{{ url_for('static' , filename='img/' + photo)}}"><img src="{{ url_for('static' , filename='img/' + photo) }}" class="img-rounded" alt="Cinque Terre" width="304" height="236" ></a>
+{{% endfor %}}
