@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dashboard.app.DashboardConfig'
 ]
 
 MIDDLEWARE = [
@@ -77,15 +76,14 @@ WSGI_APPLICATION = 'Ecommerce_website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'clothifyy_db',
-        'USER': 'root',
-        'HOST': 'localhost',
-        'PORT': 3306,
-        'PASSWORD': ''
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'clothifyy_db',
+        # 'USER': 'root',
+        # 'HOST': 'localhost',
+        # 'PORT': 3306,
+        # 'PASSWORD': ''
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
