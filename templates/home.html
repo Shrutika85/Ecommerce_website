@@ -1,7 +1,7 @@
 
 <h1>hello {{name}}</h1>
 <form action="getimage" method="post" enctype="multipart/form-data" >
-    {%csrf_token%}
+    {% csrf_token %}
   <input type="file"  name="filepath"  required>
   <input type="submit">
 </form>
