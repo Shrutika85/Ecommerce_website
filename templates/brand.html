@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>index</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap">
@@ -23,32 +24,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Volkhov&amp;display=swap">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/fonts/typicons.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/abtus.css">
-    <link rel="stylesheet" href="assets/css/Bold-BS4-Footer-Simple.css">
-    <link rel="stylesheet" href="assets/css/Carousel-Hero.css">
-    <link rel="stylesheet" href="assets/css/cart_bag.css">
-    <link rel="stylesheet" href="assets/css/category1.css">
-    <link rel="stylesheet" href="assets/css/Header-Dark.css">
-    <link rel="stylesheet" href="assets/css/Horizontal-Scroll.css">
-    <link rel="stylesheet" href="assets/css/Hover-Button-1-1.css">
-    <link rel="stylesheet" href="assets/css/Hover-Button-1.css">
+    <link rel="stylesheet" href="{%static 'fonts/fontawesome-all.min.css'%}">
+    <link rel="stylesheet" href="{%static 'fonts/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{%static 'fonts/ionicons.min.css'%}">
+    <link rel="stylesheet" href="{%static 'fonts/typicons.min.css'%}">
+    <link rel="stylesheet" href="{%static 'fonts/fontawesome5-overrides.min.css'%}">
+    <link rel="stylesheet" href="{%static 'css/abtus.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Bold-BS4-Footer-Simple.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Carousel-Hero.css'%}">
+    <link rel="stylesheet" href="{%static 'css/cart_bag.css'%}">
+    <link rel="stylesheet" href="{%static 'css/category1.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Header-Dark.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Horizontal-Scroll.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Hover-Button-1-1.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Hover-Button-1.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="assets/css/Loginbag-empty.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
-    <link rel="stylesheet" href="assets/css/Not-login.css">
-    <link rel="stylesheet" href="assets/css/product_details_1_1.css">
-    <link rel="stylesheet" href="assets/css/product_details_1.css">
-    <link rel="stylesheet" href="assets/css/product-view.css">
-    <link rel="stylesheet" href="assets/css/sign-in.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/Team-Grid.css">
+    <link rel="stylesheet" href="{%static 'css/Loginbag-empty.css'%}">
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Navigation-with-Search.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Not-login.css'%}">
+    <link rel="stylesheet" href="{%static 'css/product_details_1_1.css'%}">
+    <link rel="stylesheet" href="{%static 'css/product_details_1.css'%}">
+    <link rel="stylesheet" href="{%static 'css/product-view.css'%}">
+    <link rel="stylesheet" href="{%static 'css/sign-in.css'%}">
+    <link rel="stylesheet" href="{%static 'css/styles.css'%}">
+    <link rel="stylesheet" href="{%static 'css/Team-Grid.css'%}">
 </head>
 
 <body style="text-align: justify;font-family: 'IM Fell English SC', serif;">
@@ -61,30 +62,30 @@
             <section class="team-grid">
                 <div class="container">
                     <div class="intro"></div>
-                    <div class="row people" style="margin: 0 0 0px 0;padding: 0 0 0 0 ;" onclick="location.href='product view/index.html'">
+                    <div class="row people" style="margin: 0 0 0px 0;padding: 0 0 0 0 ;" onclick="location.href='products_view.html'">
                         <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url(&quot;assets/img/globus.jpg&quot;) no-repeat;background-size: auto;margin: 0 0 0 0px;border-width: 2px;border-style: solid;">
+                            <div class="box" style="background: url({% static 'img/globus.jpg' %}) no-repeat;background-size: auto;margin: 0 0 0 0px;border-width: 2px;border-style: solid;">
                                 <div class="cover" style="background: rgba(0,0,0,0.85);">
                                     <p class="title" style="color: #eccac9;margin: -50px 0 0 0;"><br><strong>FASHION FOR CHANGING WORLD</strong><br><br></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url(&quot;assets/img/biba.png&quot;) no-repeat;background-size: contain;border-width: 2px;border-style: solid;">
+                            <div class="box" style="background: url({% static 'img/biba.png' %}) no-repeat;background-size: contain;border-width: 2px;border-style: solid;">
                                 <div class="cover" style="background: rgba(0,0,0,0.85);">
                                     <p class="title" style="color: #eccac9;margin: -50px 0 0 0 ;"><br><strong>CHANGE IS BEAUTIFUL</strong><br><br></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url(&quot;assets/img/h&m.png&quot;) no-repeat;border-width: 2px;border-style: solid;">
+                            <div class="box" style="background: url({% static 'img/h&m.png' %}) no-repeat;border-width: 2px;border-style: solid;">
                                 <div class="cover" style="background: rgba(0,0,0,0.85);">
                                     <p class="title" style="color: #eccac9;margin: -50px 0 0 0 ;"><br><strong>HENNES &amp; MAURITZ</strong><br><br></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url(&quot;assets/img/levis.jpg&quot;) no-repeat;border-width: 2px;border-style: solid;">
+                            <div class="box" style="background: url({% static 'img/levis.jpg' %}) no-repeat;border-width: 2px;border-style: solid;">
                                 <div class="cover" style="background: rgba(0,0,0,0.85);">
                                     <p class="title" style="color: #eccac9;margin: -50px 0 0 0;"><br><strong>LIVE IN LEVI'S</strong><br><br><br></p>
                                 </div>
@@ -99,13 +100,13 @@
     <div class="carousel slide" data-bs-ride="carousel" id="carousel-3" style="margin: 40px 20px 0px 20px;">
         <div class="carousel-inner" style="background: #eccac9;border-width: 10px;border-style: dashed;">
             <div class="carousel-item active" style="font-family: Almendra, serif;">
-                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url(&quot;assets/img/O-1.jpeg&quot;) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product details/index.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
+                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url({% static 'img/O-1.jpeg' %}) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
             </div>
             <div class="carousel-item" style="width: 1336px;height: 499px;background: #eccac9;font-family: Almendra, serif;">
-                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url(&quot;assets/img/O-2.jpg&quot;) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product details/index.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
+                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url({%static 'img/0-2.jpg'%}) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
             </div>
             <div class="carousel-item" style="width: 1336px;height: 499px;background: #eccac9;font-family: Almendra, serif;">
-                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url(&quot;assets/img/O-3.jpg&quot;) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product details/index.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
+                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url({%static 'img/0-3.jpg'%}) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
             </div>
         </div>
         <div><a class="carousel-control-prev" href="#carousel-3" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-3" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
@@ -118,13 +119,13 @@
     <div class="carousel slide" data-bs-ride="carousel" id="carousel-1" style="margin: 40px 20px 0px 20px;">
         <div class="carousel-inner" style="background: #b3375b;border: 15px double var(--bs-white) ;">
             <div class="carousel-item active" style="font-family: Almendra, serif;">
-                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url(&quot;assets/img/1.jpg&quot;) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label><button onclick="location.href='product details/index.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
+                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url({%static 'img/1.jpg'%}) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
             </div>
             <div class="carousel-item" style="font-family: Almendra, serif;">
-                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url(&quot;assets/img/2.jpg&quot;) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label><button onclick="location.href='product details/index.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
+                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url({%static 'img/2.jpg'%}) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
             </div>
             <div class="carousel-item" style="font-family: Almendra, serif;">
-                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url(&quot;assets/img/3.jpg&quot;) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label><button onclick="location.href='product details/index.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
+                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse" style="text-align: center;background: url({%static 'img/3.jpg'%}) no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
             </div>
         </div>
         <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
@@ -136,9 +137,9 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-    <script src="script.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
+    <script src="../static/script.js"></script>
+    <script src="{%static 'bootstrap/js/bootstrap.min.js"></script>
+    <script src="{%static 'js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
 

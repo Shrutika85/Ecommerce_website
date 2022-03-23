@@ -6,17 +6,16 @@ from django.core.files.storage import FileSystemStorage
 from django.db import connection
 
 
-
 def home(request):
     context={'a': 1}
-    return render(request, 'Login(order empty).html', {'name': 'Shreya'})
+    return render(request, 'log-in.html', {'name': 'Shreya'})
 
 def getimage(request):
-    # with connection.cursor() as cursor:
+    #   with connection.cursor() as cursor:
     #     cursor.execute("SELECT * FROM category_1_car")
     #     row = cursor.fetchone()
     #     print(row)
-    #return render(request, 'image.html', context)
+    # return render(request, 'image.html', context)
         print(request)
         # fileobj=request.FILES['filepath']
         # fs=FileSystemStorage()
