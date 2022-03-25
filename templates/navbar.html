@@ -1,3 +1,4 @@
+{#{% extends 'About us.html' %}#}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -56,8 +57,7 @@
 </head>
 
 <body>
-  
-
+{#{% block content %}#}
             <nav class="navbar navbar-light navbar-expand-lg sticky-top pulse animated navigation-clean-search" style=" width: 100% ;padding: 19px 0px;text-align: center;box-shadow: 0px 15px 10px -15px var(--bs-gray-700);height: 120px;background: var(--bs-black);">
                 <div class="container">
                     <img data-bss-hover-animate="pulse" src="{%static 'img/icon-light-removebg-preview.png'%}" style=" width: 100px;height: 100px;margin: 0 0 0 -30px;padding: 0;"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -96,98 +96,100 @@
                         </div>
                     </div>
                 </div>
-                
             </nav>
-
-    <pre>
-
+{#{% endblock %}#}
 
 
-
-
-
-asd
-
-
-The class global attribute is a space-separated list of the case-sensitive classes of the element. Classes allow CSS and Javascript to select and access specific elements via the class selectors or functions like the DOM method document.getElementsByClassName.
-
-
-
-
-
-asd
-
-
-
-
-
-
-
-
-
-
-afas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-asfd
-
-
-
-
-
-
-    </pre>
-
-   
-    
-    <!-- <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-    <script>
-
-        function themechanger()
-        {
-           
-            
-            const options = {
-                                
-                               // bottom: '64px', // default: '32px'
-                               // right: '32px', // default: '32px'
-                               // left: 'unset', // default: 'unset'
-                                time: '0.5s', // default: '0.3s'
-                                mixColor: '#fff', // default: '#fff'
-                                backgroundColor: '#fff',  // default: '#fff'
-                                //buttonColorDark: '#100f2c',  // default: '#100f2c'
-                                //buttonColorLight: '#fff', // default: '#fff'
-                                saveInCookies: true, // default: true,
-                               // label: '🌓', // default: ''
-                                //autoMatchOsTheme: true // default: true
-                            }
-            
-           
-                            
-            const darkmode = new Darkmode(options);
-            darkmode.showWidget();
-
-            alert("IJAHdinsdf");
-        }
- <i class="icon ion-contrast" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="flash" style="font-size: 20px;margin: 0px 60px 0px 30px; padding: 0px 7px 2px 7px; border-radius: 50%; background: var(--bs-white);" onclick="themechanger()" title="Theme"></i>
-    </script> -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script> 
-     <script src="../static/script.js"></script>
-    <script src="{%static 'bootstrap/js/bootstrap.min.js"></script>
-    <script src="{%static 'js/bs-init.js"></script>
+{##}
+{#    <pre>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#asd#}
+{##}
+{##}
+{#The class global attribute is a space-separated list of the case-sensitive classes of the element. Classes allow CSS and Javascript to select and access specific elements via the class selectors or functions like the DOM method document.getElementsByClassName.#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#asd#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#afas#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#asfd#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#    </pre>#}
+{##}
+{##}
+{##}
+{#    <!-- <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>#}
+{#    <script>#}
+{##}
+{#        function themechanger()#}
+{#        {#}
+{##}
+{##}
+{#            const options = {#}
+{##}
+{#                               // bottom: '64px', // default: '32px'#}
+{#                               // right: '32px', // default: '32px'#}
+{#                               // left: 'unset', // default: 'unset'#}
+{#                                time: '0.5s', // default: '0.3s'#}
+{#                                mixColor: '#fff', // default: '#fff'#}
+{#                                backgroundColor: '#fff',  // default: '#fff'#}
+{#                                //buttonColorDark: '#100f2c',  // default: '#100f2c'#}
+{#                                //buttonColorLight: '#fff', // default: '#fff'#}
+{#                                saveInCookies: true, // default: true,#}
+{#                               // label: '🌓', // default: ''#}
+{#                                //autoMatchOsTheme: true // default: true#}
+{#                            }#}
+{##}
+{##}
+{##}
+{#            const darkmode = new Darkmode(options);#}
+{#            darkmode.showWidget();#}
+{##}
+{#            alert("IJAHdinsdf");#}
+{#        }#}
+{# <i class="icon ion-contrast" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="flash" style="font-size: 20px;margin: 0px 60px 0px 30px; padding: 0px 7px 2px 7px; border-radius: 50%; background: var(--bs-white);" onclick="themechanger()" title="Theme"></i>#}
+{#    </script> -->#}
+{##}
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+     <script src="{% static 'script.js' %}"></script>
+    <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'js/bs-init.js'%}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
 

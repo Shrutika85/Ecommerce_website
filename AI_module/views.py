@@ -8,7 +8,7 @@ from django.db import connection
 
 def home(request):
     context={'a': 1}
-    return render(request, 'log-in.html', {'name': 'Shreya'})
+    return render(request, 'About us.html', {'name': 'Shreya'})
 
 def getimage(request):
     #   with connection.cursor() as cursor:
