@@ -51,7 +51,6 @@
     <link rel="stylesheet" href="{%static 'css/styles.css'%}">
     <link rel="stylesheet" href="{%static 'css/Team-Grid.css'%}">
 </head>
-
 <body>
     <div>
         <div class="container">
@@ -74,19 +73,22 @@
                                     <h3 class="gift__name" style="font-family: Abel, sans-serif;">Colour&nbsp; :&nbsp; &nbsp;Red</h3>
                                     <h3 class="gift__name" style="font-family: Abel, sans-serif;">Price&nbsp; &nbsp;:&nbsp; &nbsp;Rs. 2250</h3>
                                 </div>
-                                <div class="gift__cta-wrap col-12 col-sm-6" style="width: 300px;"><a class="flux_cta gift__cta"  href="{% static 'order [buy now].html'%}" style="width: 220px;height: 55px;background: #b3375b;font-size: 19px;"><i class="fas fa-box-open" style="margin: 0 10px 0 0 ;"></i>Order Now</a><a class="flux_cta gift__cta" href="wishlist.html" style="width: 220px;margin: 10px 0 0 0;height: 55px;background: #eccac9;color: #000000;font-size: 18px;"><i class="fa fa-heart" style="margin: 0 10px 0 0 ;"></i>Move to Wishlist</a><a class="flux_cta gift__cta"  href="#" style="margin: 10px;width: 220px;color: var(--orange);background: var(--white);border-style: solid;border-color: var(--orange);height: 55px;font-size: 18px; background-color: white;"><i class="typcn typcn-times" style="margin: 0 10px 0 0;font-size: 20px;"></i>Remove</a></div>
+                                <div class="gift__cta-wrap col-12 col-sm-6" style="width: 300px;">
+                                    <a class="flux_cta gift__cta" href="./try" style="width: 220px;height: 55px;background: #b3375b;font-size: 19px;">
+                                        <i class="fas fa-box-open" style="margin: 0 10px 0 0 ;"></i>Order Now</a>
+                                    <a class="flux_cta gift__cta" href="wishlist.html" style="width: 220px;margin: 10px 0 0 0;height: 55px;background: #eccac9;color: #000000;font-size: 18px;"><i class="fa fa-heart" style="margin: 0 10px 0 0 ;"></i>Move to Wishlist</a>
+                                    <a class="flux_cta gift__cta"  href="#" style="margin: 10px;width: 220px;color: var(--orange);background: var(--white);border-style: solid;border-color: var(--orange);height: 55px;font-size: 18px; background-color: white;"><i class="typcn typcn-times" style="margin: 0 10px 0 0;font-size: 20px;"></i>Remove</a></div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-    <script src="../static/script.js"></script>
-    <script src="{%static 'bootstrap/js/bootstrap.min.js"></script>
-    <script src="{%static 'js/bs-init.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+    <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'js/bs-init.js'%}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
 

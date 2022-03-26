@@ -4,11 +4,9 @@ from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
 from django.db import connection
-
-
 def home(request):
     context={'a': 1}
-    return render(request, 'About us.html', {'name': 'Shreya'})
+    return render(request, 'bag.html', {'name': 'Shreya'})
 
 def getimage(request):
     #   with connection.cursor() as cursor:
@@ -22,4 +20,8 @@ def getimage(request):
         # filePathName=fs.save(fileobj.name, fileobj)
         # filePathName=fs.url(filePathName)
         # context = {'filePathName': filePathName}
-        return render(request, 'index.html',)
+        return render(request, 'index.html')
+
+def getOrderPage(request):
+    return render(request,"../templates/buy_now.html")
+
