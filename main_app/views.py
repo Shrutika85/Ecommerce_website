@@ -6,7 +6,7 @@ from django.core.files.storage import FileSystemStorage
 from django.db import connection
 def home(request):
     context={'a': 1}
-    return render(request, 'bag.html', {'name': 'Shreya'})
+    return render(request, 'index.html', {'name': 'Shreya'})
 
 def getimage(request):
     #   with connection.cursor() as cursor:
@@ -24,4 +24,16 @@ def getimage(request):
 
 def getOrderPage(request):
     return render(request,"./order-box.html")
+
+def getAboutPage(request):
+    return render(request,"./About us.html")
+
+def getLoginPage(request):
+    return render(request,"./Log-in.html")
+
+def getSignUp(request):
+    return render(request,"./sign-in.html")
+
+def getProducts(request):
+    return render(request,"./products_view.html")
 
