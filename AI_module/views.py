@@ -23,5 +23,5 @@ def getimage(request):
         return render(request, 'index.html')
 
 def getOrderPage(request):
-    return render(request,"../templates/buy_now.html")
+    return render(request,"./order-box.html")
 
