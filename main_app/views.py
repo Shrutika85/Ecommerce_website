@@ -37,3 +37,20 @@ def getSignUp(request):
 def getProducts(request):
     return render(request,"./products_view.html")
 
+def getProductsView(request):
+    return render(request,"./product_details.html")
+
+def getBagPage(request):
+    return render(request,"./bag.html")
+
+def getWishlistPage(request):
+    return render(request,"./wishlist.html")
+
+def getEmptyWishlist(request):
+    return render(request,"./Login(wishlist empty).html")
+
+def getEmptyBag(request):
+    return render(request,"./Login(bag empty).html")
+
+def getBrands(request):
+    return render(request,"./brand.html")
