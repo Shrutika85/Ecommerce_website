@@ -79,19 +79,24 @@
                         </div>
                     </li>
                 </ul>
-                <a href="brand.html" ><div class="text-start x-drop-btn" aria-expanded="false" data-bs-toggle="dropdown" style="width: 100px;margin: 0 0 0 30px;text-align: center;"><span style="text-align: center;font-size: 23px;font-family: 'IM Fell English SC', serif;color: var(--bs-gray-700);" onclick="location.href='brand.html'"> Brand</span></div></a>
+                <a href="brand.html" ><div class="text-start x-drop-btn" aria-expanded="false" data-bs-toggle="dropdown" style="width: 100px;margin: 0 0 0 30px;text-align: center;"><span style="text-align: center;font-size: 23px;font-family: 'IM Fell English SC', serif;color: var(--bs-gray-700);" onclick="location.href='./brands'"> Brand</span></div></a>
                 <form class="me-auto search-form" target="_self">
-                    <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"></label><i class="fa fa-search" style="padding: 10px;font-size: 20px;margin: 0px 7px 0px 130px;"></i><input class="border rounded-pill border-dark form-control search-field" type="search" id="search-field" name="search" placeholder="  Search for anything..." style="width: 300px;transform: rotate(0deg) scale(1.03);height: 30px;font-family: Volkhov, serif;font-size: 14px;"></div>
-                </form><i class="icon ion-contrast" onclick="location.href='https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js'" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="flash" style="font-size: 20px;margin: 0px 60px 0px 30px;" title="Theme"></i><i class="fa fa-heart" data-bs-toggle="tooltip" onclick="location.href='wishlist.html'" data-bss-tooltip="" data-bss-hover-animate="swing" style="font-size: 20px;padding: 0px;" title="Wishlist"></i><i class="fa fa-shopping-bag" onclick="location.href='bag.html'" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="bounce" style="font-size: 20px;margin: 30px;" title="Bag"></i><i class="fas fa-box-open" onclick="location.href='order-box.html'" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="wobble" style="font-size: 20px;" title="Order"></i>
+                    <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"></label><i class="fa fa-search" style="padding: 10px;font-size: 20px;margin: 0px 7px 0px 130px;"></i>
+                        <input class="border rounded-pill border-dark form-control search-field" type="search" id="search-field" name="search" placeholder="  Search for anything..." style="width: 300px;transform: rotate(0deg) scale(1.03);height: 30px;font-family: Volkhov, serif;font-size: 14px;"></div>
+                </form><i class="icon ion-contrast" onclick="location.href='https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js'" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="flash" style="font-size: 20px;margin: 0px 60px 0px 30px;" title="Theme"></i>
+                <i class="fa fa-heart" data-bs-toggle="tooltip" onclick="location.href='./wishlist'" data-bss-tooltip="" data-bss-hover-animate="swing" style="font-size: 20px;padding: 0px;" title="Wishlist"></i>
+                <i class="fa fa-shopping-bag" onclick="location.href='./bag'" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="bounce" style="font-size: 20px;margin: 30px;" title="Bag"></i>
+                <i class="fas fa-box-open" onclick="location.href='./order'" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="wobble" style="font-size: 20px;" title="Order"></i>
                 <div class="x-dropdown dropdown">
                     <div class="text-start x-drop-btn" aria-expanded="false" data-bs-toggle="dropdown" style="width: 60px;color: var(--bs-gray-900);height: 60px;margin: 0 0 0 50px;"><i class="fa fa-user-circle-o" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="tada" style="font-size: 28px;margin: 10px 0px 0px 60px;" title="Profile"></i></div>
-                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="Log-in.html">Log-In</a><a class="dropdown-item" role="presentation" href="sign-in.html">Log-Out</a><a class="dropdown-item" role="presentation" href="sign-in.html">Sign-IN</a></div>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="./Login">Log-In</a><a class="dropdown-item" role="presentation" href="./Login">Log-Out</a><a class="dropdown-item" role="presentation" href="./SignUp">Sign-IN</a></div>
                 </div>
             </div>
         </div>
     </nav>
 
 {% block content %}
+
 {% endblock %}
 
  <footer id="myFooter" style="padding:0px;">
