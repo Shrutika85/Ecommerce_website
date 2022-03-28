@@ -54,7 +54,7 @@
     <link rel="stylesheet" href="{%static 'css/Team-Grid.css'%}">
 </head>
 <body>
-{#{% block content %}#}
+
             <nav class="navbar navbar-light navbar-expand-lg sticky-top pulse animated navigation-clean-search" style=" width: 100% ;padding: 19px 0px;text-align: center;box-shadow: 0px 15px 10px -15px var(--bs-gray-700);height: 120px;background: var(--bs-black);">
                 <div class="container">
                     <img data-bss-hover-animate="pulse" src="{%static 'img/icon-light-removebg-preview.png'%}" style=" width: 100px;height: 100px;margin: 0 0 0 -30px;padding: 0;"><a class="navbar-brand" href="#"></a>
@@ -96,9 +96,9 @@
                     </div>
                 </div>
             </nav>
-{#{% endblock %}#}
 
-
+{% block content %}
+{% endblock %}
 {##}
 {#    <pre>#}
 {##}
