@@ -1,3 +1,4 @@
+{% extends "navbar.html" %}
 {%  load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -86,6 +87,7 @@
 </head>
 
 <body>
+{% block content %}
     <div id="wrapper">
         <div id="sidebar-wrapper" style="background: #eccac9; margin: -20px 0 0 -250px; width: 300px;">
             <ul class="sidebar-nav">
@@ -420,6 +422,7 @@
     <script src="{%static 'view_products/bootstrap/js/bootstrap.min.js'%}"></script>
     <script src="{%static 'view_products/js/MUSA_product-display.js'%}"></script>
     <script src="{%static 'view_products/js/Sidebar-Menu.js'%}"></script>
+{% endblock %}
 </body>
 
 </html>

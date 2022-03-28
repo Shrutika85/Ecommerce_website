@@ -1,3 +1,4 @@
+{% extends "navbar.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -54,6 +55,9 @@
 </head>
 
 <body>
+{% block content %}
+
+
     <div>
         <div class="container">
             <div class="row">
@@ -89,6 +93,7 @@
     <script src=" {%static 'bootstrap/js/bootstrap.min.js'%}"></script>
     <script src=" {%static 'js/bs-init.js'%}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+{% endblock %}
 </body>
 
 </html>

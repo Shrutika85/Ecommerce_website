@@ -1,3 +1,4 @@
+{% extends "navbar.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -54,6 +55,9 @@
 </head>
 
 <body>
+{% block content %}
+
+
     <div class="container" style="text-align: center;margin: 150px 0 0 0;width: 100%;">
         <div class="row" style="width: 100%;">
             <div class="col-md-12"><img data-bss-hover-animate="bounce" src="{%static 'img/not%20login.png'%}" style="margin: 0 0 0 140px;background: rgba(255,255,255,0);"></div>
@@ -68,6 +72,7 @@
     <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
     <script src="{%static 'js/bs-init.js'%}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+{% endblock  %}
 </body>
 
 </html>

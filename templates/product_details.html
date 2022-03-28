@@ -1,3 +1,4 @@
+{% extends "navbar.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,7 @@
 </head>
 
 <body style="text-align: center;">
+{% block content %}
     <div>
         <section >
             <div id="w_shop_105" class="carousel slide w_shop_105_indicators w_shop_105_control_button thumb_scroll_x swipe_x ps_easeOutInCubic" data-ride="carousel" data-pause="hover" data-interval="8000" data-duration="2000" style="background: white;margin: 0 0 50px 0;">
@@ -102,6 +104,7 @@
     <script src="../static/product_details_assets/js/Modal-commerce-popup-button.js"></script>
     <script src="../static/product_details_assets/js/Product-Viewer-1-1.js"></script>
     <script src="../static/product_details_assets/js/Product-Viewer-1.js"></script>
+{% endblock %}
 </body>
 
 </html>
