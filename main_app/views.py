@@ -1,12 +1,28 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import *
 #from PIL import Image
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
 from django.db import connection
 def home(request):
-    context={'a': 1}
-    return render(request, 'index.html', {'name': 'Shreya'})
+    brand1=Brand()
+    brand1.desc="Globus Dynemically"
+    brand1.img="biba.jpeg"
+
+    brand2 = Brand()
+    brand2.desc = "Change is beautiful"
+    brand2.img = "biba.jpeg"
+
+    brand3 = Brand()
+    brand3.desc = "Hennes & Mauritz"
+    brand3.img = "h&m.png"
+
+    brand4 = Brand()
+    brand4.desc = "Live in Levis"
+    brand4.img = "levis.jpeg"
+    brands=[brand1, brand2, brand3, brand4]
+    return render(request, 'index.html', {'brand1': brands})
 
 def getimage(request):
     #   with connection.cursor() as cursor:
@@ -14,13 +30,12 @@ def getimage(request):
     #     row = cursor.fetchone()
     #     print(row)
     # return render(request, 'image.html', context)
-        print(request)
         # fileobj=request.FILES['filepath']
         # fs=FileSystemStorage()
         # filePathName=fs.save(fileobj.name, fileobj)
         # filePathName=fs.url(filePathName)
         # context = {'filePathName': filePathName}
-        return render(request, 'index.html')
+    return render(request, 'index.html',)
 
 def getOrderPage(request):
     return render(request,"./order-box.html")
