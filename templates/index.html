@@ -177,11 +177,11 @@
 
                     <div class="intro"></div>
                  <div class="row people" style="margin: 0 0 0px 0;padding: 0 0 0 0 ;">
-                     {% for brand in brand1 %}
+                     {% for brand in brands %}
                         <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url('{{ BaseUrl }}/{{ brand.img }}') no-repeat;background-size: auto;margin: 0 0 0 0px;border-width: 2px;border-style: solid;">
+                            <div class="box" style="background: url('{{ BaseUrl }}/{{ brand.img}}') no-repeat;background-size: auto;margin: 0 0 0 0px;border-width: 2px;border-style: solid;">
                                 <div class="cover" style="background: rgba(0,0,0,0.85);">
-                                    <p class="title" style="color: #eccac9;margin: -50px 0 0 0;"><br><strong>{{brand.desc}}</strong><br><br></p>
+                                    <p class="title" style="color: #eccac9;margin: -50px 0 0 0;"><br><strong>{{brand.brand_desc}}</strong><br><br></p>
                                 </div>
                             </div>
                         </div>

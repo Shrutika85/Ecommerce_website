@@ -1,28 +1,22 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import *
+from main_app.models import *
 #from PIL import Image
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
 from django.db import connection
-def home(request):
-    brand1=Brand()
-    brand1.desc="Globus Dynemically"
-    brand1.img="biba.jpeg"
-
-    brand2 = Brand()
-    brand2.desc = "Change is beautiful"
-    brand2.img = "biba.jpeg"
-
-    brand3 = Brand()
-    brand3.desc = "Hennes & Mauritz"
-    brand3.img = "h&m.png"
-
-    brand4 = Brand()
-    brand4.desc = "Live in Levis"
-    brand4.img = "levis.jpeg"
-    brands=[brand1, brand2, brand3, brand4]
-    return render(request, 'index.html', {'brand1': brands})
+def home(request, cursor=None):
+   #  for h in brand.objects.all():
+        # print(h.brand_id)
+        # print(h.brand_desc)
+        # print(h.brand_name)
+        # print(h.brand_image)
+    for x in product.objects.all():
+        with connection.cursor() as cursor:
+           cursor.execute('SELECT brand_name from main_app_brand where brand_id='+str(x.product_brand_id))
+           print(x.product_brand_id)
+           print(cursor.fetchone())
+    return render(request, 'index.html',{'brands': brand.objects.all()})
 
 def getimage(request):
     #   with connection.cursor() as cursor:
