@@ -1,6 +1,6 @@
 {% extends "navbar.html" %}
 {% load static %}
-{%  static 'img' as BaseUrl %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,7 +164,10 @@
                 <div class="col">
                     <div style="text-align: center;"><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;">
                         <img class="border rounded-circle shadow-down" src="{% static 'img/tops.jpg'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url({% static 'img/bengaluru.jpg' %});">Tops</a>
-                        <a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;"><img class="border rounded-circle shadow-down" src="{% static 'img/skirts.jpg' %}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url({%static 'img/bengaluru.jpg' %}");">Skirts</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;"><img class="border rounded-circle shadow-down" src="{%static 'img/kurtis.jpg' %}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url({%static 'img/bengaluru.jpg'%}")">kurtis</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;"><img class="border rounded-circle shadow-down" src="{% static 'img/shirts.jpg'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url(&quot;assets/img/bengaluru.jpg&quot;);">Shirts</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;"><img class="border rounded-circle shadow-down" src="{%static 'img/tshirts.jpg'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url(&quot;assets/img/bengaluru.jpg&quot;);">t-shirts</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;"><img class="border rounded-circle shadow-down" src="{% static 'img/jeans.png'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url(&quot;assets/img/bengaluru.jpg&quot;);">jeans</a></div>
+                        <a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;">
+                            <img class="border rounded-circle shadow-down" src="{% static 'img/skirts.jpg' %}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url({%static 'img/bengaluru.jpg' %})">Skirts</a>
+                        <a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;"><img class="border rounded-circle shadow-down" src="{%static 'img/kurtis.jpg' %}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url({%static 'img/bengaluru.jpg'%})">kurtis</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;"><img class="border rounded-circle shadow-down" src="{% static 'img/shirts.jpg'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;">Shirts</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;"><img class="border rounded-circle shadow-down" src="{%static 'img/tshirts.jpg'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;">t-shirts</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;"><img class="border rounded-circle shadow-down" src="{% static 'img/jeans.png'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;">jeans
+                        </a></div>
                 </div>
             </div>
             <div class="intro">
@@ -179,8 +182,9 @@
                  <div class="row people" style="margin: 0 0 0px 0;padding: 0 0 0 0 ;">
                      {% for brand in brands %}
                         <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url('{{ BaseUrl }}/{{ brand.img}}') no-repeat;background-size: auto;margin: 0 0 0 0px;border-width: 2px;border-style: solid;">
+                            <div class="box" style="background: url('media/{{brand.brand_image}}') no-repeat;background-size: auto;margin: 0 0 0 0px;border-width: 2px;border-style: solid;">
                                 <div class="cover" style="background: rgba(0,0,0,0.85);">
+{#                                <img src="media/{{ brand.brand_image }}">#}
                                     <p class="title" style="color: #eccac9;margin: -50px 0 0 0;"><br><strong>{{brand.brand_desc}}</strong><br><br></p>
                                 </div>
                             </div>
@@ -196,5 +200,6 @@
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bs-init.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    </div>
 </body>
 </html>

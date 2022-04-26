@@ -16,3 +16,4 @@ path('wishlist_empty', views.getEmptyWishlist),
 path('bag_empty', views.getEmptyBag),
 path('brands', views.getBrands)
 ]
+

@@ -6,16 +6,16 @@ from django.core.files.storage import FileSystemStorage
 # Create your views here.
 from django.db import connection
 def home(request, cursor=None):
-   #  for h in brand.objects.all():
-        # print(h.brand_id)
-        # print(h.brand_desc)
-        # print(h.brand_name)
-        # print(h.brand_image)
-    for x in product.objects.all():
-        with connection.cursor() as cursor:
-           cursor.execute('SELECT brand_name from main_app_brand where brand_id='+str(x.product_brand_id))
-           print(x.product_brand_id)
-           print(cursor.fetchone())
+    for h in brand.objects.all():
+        print(h.brand_id)
+        print(h.brand_desc)
+        print(h.brand_name)
+        print(h.brand_image)
+    # for x in product.objects.all():
+    #     with connection.cursor() as cursor:
+    #        cursor.execute('SELECT brand_name from main_app_brand where brand_id='+str(x.product_brand_id))
+    #        print(x.product_brand_id)
+    #        print(cursor.fetchone())
     return render(request, 'index.html',{'brands': brand.objects.all()})
 
 def getimage(request):
