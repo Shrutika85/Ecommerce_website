@@ -1,9 +1,7 @@
 {% extends "navbar.html" %}
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -140,7 +138,7 @@
                     <li data-bs-target="#carousel-8" data-bs-slide-to="1"></li>
                     <li data-bs-target="#carousel-8" data-bs-slide-to="2"></li>
                 </ol>
-            </div><span style="font-family: Amita, serif;text-align: center;font-weight: bold;">H&amp;M</span>
+            </div><span id="brand11" style="font-family: Amita, serif;text-align: center;font-weight: bold;">H&amp;M</span>
         </div>
         <div onclick="location.href='./brands'" class="col-6 col-sm-3" data-bss-hover-animate="pulse" style="padding: 10px 30px 10px 10px;margin: 0 0 30px 0;text-align: center;">
             <div class="carousel slide" data-bs-ride="carousel" id="carousel-6">
@@ -149,7 +147,9 @@
                     <div class="carousel-item"><img class="w-100 d-block" src="{% static 'img/L-2.jpg' %}" alt="Slide Image" style="height: 475px;border-width: 4px;border-style: solid;border-radius: 5px;border-top-left-radius: 0px;border-top-right-radius: 39px;border-bottom-right-radius: 0px;border-bottom-left-radius: 40px;margin: 0 0 10px 0;"></div>
                     <div class="carousel-item"><img class="w-100 d-block" src="{% static 'img/L-3.jpg' %}" alt="Slide Image" style="height: 475px;border-width: 4px;border-style: solid;border-radius: 5px;border-top-left-radius: 0px;border-top-right-radius: 39px;border-bottom-right-radius: 0px;border-bottom-left-radius: 40px;margin: 0 0 10px 0;"></div>
                 </div>
-                <div><a class="carousel-control-prev" href="#carousel-6" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-6" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
+                <div><a class="carousel-control-prev" href="#carousel-6" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-6" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
                 <ol class="carousel-indicators" style="margin: 0 0 25px 0 ;">
                     <li data-bs-target="#carousel-6" data-bs-slide-to="0" class="active"></li>
                     <li data-bs-target="#carousel-6" data-bs-slide-to="1"></li>
@@ -160,31 +160,36 @@
 
         <div class="col"  >
             <h1 class="text-center" style="margin: 50px 0px 20px 0px;padding: 0 0 20px 0;font-size: 60px;font-family: Rancho, serif;color: rgb(179,55,91);">Categories</h1>
-            <div onclick="location.href='./brands'" class="row" style="margin: 0 0 50px 0;">
+            <div  class="row" style="margin: 0 0 50px 0;">
                 <div class="col">
-                    <div style="text-align: center;"><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;">
-                        <img class="border rounded-circle shadow-down" src="{% static 'img/tops.jpg'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url({% static 'img/bengaluru.jpg' %});">Tops</a>
-                        <a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;">
-                            <img class="border rounded-circle shadow-down" src="{% static 'img/skirts.jpg' %}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url({%static 'img/bengaluru.jpg' %})">Skirts</a>
-                        <a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;"><img class="border rounded-circle shadow-down" src="{%static 'img/kurtis.jpg' %}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;background: url({%static 'img/bengaluru.jpg'%})">kurtis</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;"><img class="border rounded-circle shadow-down" src="{% static 'img/shirts.jpg'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;">Shirts</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;"><img class="border rounded-circle shadow-down" src="{%static 'img/tshirts.jpg'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;">t-shirts</a><a class="btn btn-sm animated-button victoria-one" href="#" style="width: 220px;height: 250px;border-color: #8c8299;margin: 10px;font-size: 16px;font-family: Bitter, serif;"><img class="border rounded-circle shadow-down" src="{% static 'img/jeans.png'%}" style="width: 170px;height: 170px;margin: 8px 0 15px 0;">jeans
-                        </a></div>
+                    <div style="text-align: center;">
+                    <form action="./brands" method="get">
+                         {% for cat in category %}
+                        <button class="btn btn-sm animated-button victoria-one" type="submit" name="cat_val" value="{{cat.cat_name}}"
+                                style="width: 200px;height: 250px;border-color: #8c8299;margin: 10px;font-family: Bitter, serif;font-size: 16px;">
+                            <img class="border rounded-circle shadow-down"  src='media/{{ cat.cat_image }}'
+                                 style="width: 170px;height: 170px;margin: 8px 0 15px 0;">{{cat.cat_name}}
+{#                            <input type="submit" name="cat_val" value="{{cat.cat_name}}" >#}
+                        </button>
+                        {% endfor %}
+                    </form>
+                  </div>
                 </div>
             </div>
-            <div class="intro">
-                <h2 class="text-center" style="font-family: Rancho, serif;font-size: 60px;color: rgb(179,55,91);margin: 100px 0 60px 0;">
+            <div id="brandtext" class="intro">
+                <h2   class="text-center" style="font-family: Rancho, serif;font-size: 60px;color: rgb(179,55,91);margin: 100px 0 60px 0;">
                     Brands</h2>
             </div>
             <footer id="myFooter" style="padding:0px;"></footer>
             <section class="team-grid">
                 <div class="container" onclick="location.href='./products'">
-
+    <span style="font-family: Amita, serif;font-weight: bold;"></span>
                     <div class="intro"></div>
-                 <div class="row people" style="margin: 0 0 0px 0;padding: 0 0 0 0 ;">
+                 <div class="row people" style="margin: 0 0 0px 0;padding: 0 0 0 0 ;" >
                      {% for brand in brands %}
                         <div class="col-md-4 col-lg-3 item">
                             <div class="box" style="background: url('media/{{brand.brand_image}}') no-repeat;background-size: auto;margin: 0 0 0 0px;border-width: 2px;border-style: solid;">
                                 <div class="cover" style="background: rgba(0,0,0,0.85);">
-{#                                <img src="media/{{ brand.brand_image }}">#}
                                     <p class="title" style="color: #eccac9;margin: -50px 0 0 0;"><br><strong>{{brand.brand_desc}}</strong><br><br></p>
                                 </div>
                             </div>
