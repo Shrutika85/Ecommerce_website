@@ -1,5 +1,8 @@
+from pydoc import resolve
+from pyexpat.errors import messages
+
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from main_app.models import *
 #from PIL import Image
 from django.core.files.storage import FileSystemStorage
@@ -7,26 +10,37 @@ from django.core.files.storage import FileSystemStorage
 from django.db import connection
 def home(request, cursor=None):
     print(request.POST)
-    # if request.POST.get('password', None)== request.POST.get('password2', None):
-    #     cust1=customer()
-    #     cust1.cust_id=1
-    #     cust1.cust_name=request.POST.get('username',None)
-    #     cust1.cust_email=request.POST.get('useremail', None)
-    #     cust1.cust_password=request.POST.get('password', None)
-    #     cust1.cust_contact=request.POST.get('contact', None)
-    #     cust1.cust_address=request.POST.get('address', None)
-    #     print(cust1)
-    #     cust1.save()
-    # for x in product.objects.all():
-    #     with connection.cursor() as cursor:
-    #        cursor.execute('SELECT brand_name from main_app_brand where brand_id='+str(x.product_brand_id))
-    #        print(x.product_brand_id)
-    #        print(cursor.fetchone())
-    # data={'0':{'brands': brand.objects.all()},'1':{'category':category.objects.all()}}
-    # print(data['0']['brands'],data['1']['category'])
-# data={}
-    context={'brands':brand.objects.all(),'category':category.objects.all()}
+    context = {'brands': brand.objects.all(), 'category': category.objects.all()}
     return render(request, 'index.html',context)
+
+def userLogin(request):
+    context = {'brands': brand.objects.all(), 'category': category.objects.all()}
+    mail = request.POST.get('user_email', None)
+    password = request.POST.get('user_password', None)
+    if customer.objects.filter(cust_email=mail, cust_pass=password).exists():
+        # isLogin = True
+        return render(request, 'index.html', context)
+    else:
+        print("user invalid")
+        return redirect('/Login')
+
+def insertUser(request):
+    context = {'brands': brand.objects.all(), 'category': category.objects.all()}
+    if request.POST.get('userpass', None) == request.POST.get('password2', None):
+        cust1 = customer()
+        cust1.cust_name = request.POST.get('username', None)
+        cust1.cust_password = request.POST.get('userpass', None)
+        cust1.cust_email = request.POST.get('useremail', None)
+        cust1.cust_contact = request.POST.get('contact', None)
+        cust1.cust_address = request.POST.get('address', None)
+        print(cust1)
+        cust1.save()
+        return render(request, 'index.html', context)
+    else:
+        print("user is not inserted")
+
+
+
 
 def getimage(request):
     #   with connection.cursor() as cursor:
@@ -39,7 +53,7 @@ def getimage(request):
         # filePathName=fs.save(fileobj.name, fileobj)
         # filePathName=fs.url(filePathName)
         # context = {'filePathName': filePathName}
-    return render(request, 'index.html',)
+    return render(request, './index.html',)
 
 def getOrderPage(request):
     return render(request,"./order-box.html")

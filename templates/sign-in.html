@@ -54,14 +54,14 @@
 </head>
 <body>
     <section class="login-clean" style="background: #eccac9;">
-        <form method="post" action="./home" style="background: rgba(255,255,255,0.36);box-shadow: 10px 0px 17px 5px #b3375b;border-radius: 8px;width: 1524px;">
+        <form method="post" action="./SignedIn" style="background: rgba(255,255,255,0.36);box-shadow: 10px 0px 17px 5px #b3375b;border-radius: 8px;width: 1524px;">
             {% csrf_token %}
             <h2 class="visually-hidden">Login Form</h2>
             <div class="illustration"><img src="{% static 'img/icon-light-removebg-preview.png'%}" style="font-size: 80px;width: 300px;margin: -25px 0 0 -30px;"></div>
             <label class="form-label" style="font-family: Almendra, serif;font-weight: bold;">Full Name</label><input class="form-control" type="text" name="username" style="margin: 0 0 15px 0;font-family: Acme, sans-serif;">
             <div class="mb-3"></div><label class="form-label"   style="font-family: Almendra, serif;font-weight: bold;">Email-ID</label>
             <input class="form-control" type="email" name="useremail" style="margin: 0 0 15px 0;font-family: Acme, sans-serif;"><label class="form-label" style="font-family: Almendra, serif;font-weight: bold;">Password</label>
-            <div class="mb-3"><input class="form-control" type="password" name="password" style="border-radius: 8px;font-family: Acme, sans-serif;"></div>
+            <div class="mb-3"><input class="form-control" type="password" name="userpass" style="border-radius: 8px;font-family: Acme, sans-serif;"></div>
             <label class="form-label" style="font-family: Almendra, serif;font-weight: bold;">Confirm Password</label>
             <input class="form-control" type="password" name="password2" style="margin: 0 0 15px 0;border-radius: 8px;font-family: Acme, sans-serif;"><br>
             <label class="form-label" style="font-family: Almendra, serif;font-weight: bold;">Contact</label>

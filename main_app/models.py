@@ -99,7 +99,6 @@ class cat1(models.Model):
     img2=models.ImageField(upload_to='pics')
     img3=models.ImageField(upload_to='pics')
 
-
 class cat2(models.Model):
     cat2_id=models.AutoField(unique=True,primary_key=True,db_index=True)
     car2_name=models.CharField(max_length=100)
@@ -153,4 +152,3 @@ class cust_review(models.Model):
     prod_review=models.ForeignKey(product,on_delete=models.CASCADE)
     cust_review=models.ForeignKey(customer,on_delete=models.CASCADE)
     review_desc=models.CharField(max_length=500)
-
