@@ -19,29 +19,35 @@ def userLogin(request):
     password = request.POST.get('user_password', None)
     if customer.objects.filter(cust_email=mail, cust_pass=password).exists():
         # isLogin = True
+        context.update({"logstatus":True})
+        request.session["user_id"]=request.POST.get('user_email', None)
+        print("you are ",request.session.get("user_id"))
         return render(request, 'index.html', context)
-    else:
-        print("user invalid")
-        return redirect('/Login')
+    print("user invalid")
+    return redirect('/Login')
 
 def insertUser(request):
-    context = {'brands': brand.objects.all(), 'category': category.objects.all()}
     if request.POST.get('userpass', None) == request.POST.get('password2', None):
+        # if not customer.objects.filter(cust_email=request.POST.get('useremail', None).exits()):
         cust1 = customer()
         cust1.cust_name = request.POST.get('username', None)
-        cust1.cust_password = request.POST.get('userpass', None)
+        cust1.cust_pass = request.POST.get('userpass', None)
         cust1.cust_email = request.POST.get('useremail', None)
         cust1.cust_contact = request.POST.get('contact', None)
         cust1.cust_address = request.POST.get('address', None)
         print(cust1)
         cust1.save()
+        context = {'brands': brand.objects.all(), 'category': category.objects.all(),"logstatus":True}
         return render(request, 'index.html', context)
     else:
         print("user is not inserted")
+        return render(request, 'sign-in.html')
 
-
-
-
+def logout(request):
+    print("you are in logout", request.session.get("user_id"))
+    del request.session["user_id"]
+    print("i am destroyed ", request.session.get("user_id"))
+    return render(request, 'Log-in.html')
 def getimage(request):
     #   with connection.cursor() as cursor:
     #     cursor.execute("SELECT * FROM category_1_car")
@@ -56,7 +62,10 @@ def getimage(request):
     return render(request, './index.html',)
 
 def getOrderPage(request):
-    return render(request,"./order-box.html")
+    if (request.session.has_key('user_id')):
+        return render(request,"./order-box.html")
+    else:
+        return render(request,'./not-login.html')
 
 def getAboutPage(request):
     return render(request,"./About us.html")
@@ -74,10 +83,16 @@ def getProductsView(request):
     return render(request,"./product_details.html")
 
 def getBagPage(request):
-    return render(request,"./bag.html")
+    if (request.session.has_key('user_id')):
+        return render(request,"./bag.html")
+    else:
+        return render(request,'./not-login.html')
 
 def getWishlistPage(request):
-    return render(request,"./wishlist.html")
+    if(request.session.has_key('user_id')):
+        return render(request,"./wishlist.html")
+    else:
+        return render(request,'./not-login.html')
 
 def getEmptyWishlist(request):
     return render(request,"./Login(wishlist empty).html")

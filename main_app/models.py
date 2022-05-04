@@ -1,16 +1,16 @@
 from django.db import models
 
 class brand (models.Model):
-    brand_id=models.AutoField(unique=True, db_index=True,primary_key=True)
-    brand_name=models.CharField(max_length=100)
-    brand_desc=models.CharField(max_length=500)
-    brand_image=models.ImageField(upload_to="pics")
+    brand_id = models.AutoField(unique=True, db_index=True,primary_key=True)
+    brand_name = models.CharField(max_length=100)
+    brand_desc = models.CharField(max_length=500)
+    brand_image = models.ImageField(upload_to="pics")
 
 class category (models.Model):
-    cat_id=models.AutoField(unique=True, db_index=True,primary_key=True)
-    cat_name=models.CharField(max_length=100)
-    cat_desc=models.CharField(max_length=500)
-    cat_image=models.ImageField(upload_to='pics')
+    cat_id = models.AutoField(unique=True, db_index=True,primary_key=True)
+    cat_name = models.CharField(max_length=100)
+    cat_desc = models.CharField(max_length=500)
+    cat_image = models.ImageField(upload_to='pics')
 
 class product(models.Model):
     product_id = models.AutoField(unique=True, db_index=True, primary_key=True)
@@ -18,38 +18,39 @@ class product(models.Model):
     product_brand = models.ForeignKey(brand, on_delete=models.CASCADE)
     product_cat = models.ForeignKey(category, on_delete=models.CASCADE)
     product_offer = models.BooleanField(default=False)
+    product_description=models.CharField(max_length=500,default="none")
 
 class trends(models.Model):
-    trend_id=models.AutoField(unique=True, db_index=True,primary_key=True)
-    prod_trend=models.ForeignKey(product, on_delete=models.CASCADE)
-    prod_cat=models.ForeignKey(category, on_delete=models.CASCADE)
+    trend_id = models.AutoField(unique=True, db_index=True,primary_key=True)
+    prod_trend = models.ForeignKey(product, on_delete=models.CASCADE)
+    prod_cat = models.ForeignKey(category, on_delete=models.CASCADE)
 
 class product_image(models.Model):
-    image_id=models.AutoField(unique=True, db_index=True, primary_key=True)
-    prod_image=models.ForeignKey(product,on_delete=models.CASCADE)
-    img1=models.ImageField(upload_to="pics")
-    img2=models.ImageField(upload_to="pics")
-    img3= models.ImageField(upload_to="pics")
-    img4= models.ImageField(upload_to="pics")
+    image_id = models.AutoField(unique=True, db_index=True, primary_key=True)
+    prod_image = models.ForeignKey(product,on_delete=models.CASCADE)
+    img1 = models.ImageField(upload_to="pics")
+    img2 = models.ImageField(upload_to="pics")
+    img3 = models.ImageField(upload_to="pics")
+    img4 = models.ImageField(upload_to="pics")
 
 class color(models.Model):
-    color_id=models.AutoField(unique=True, db_index=True,primary_key=True)
-    prod_color=models.ForeignKey(product,on_delete=models.CASCADE)
-    color_name=models.CharField(max_length=100)
+    color_id = models.AutoField(unique=True, db_index=True,primary_key=True)
+    prod_color = models.ForeignKey(product,on_delete=models.CASCADE)
+    color_name = models.CharField(max_length=100)
 
 class product_desc(models.Model):
-    prod_desc_id=models.AutoField(unique=True, db_index=True, primary_key=True)
-    main_product=models.ForeignKey(product,on_delete=models.CASCADE)
-    prod_color=models.ForeignKey(color,on_delete=models.CASCADE)
-    prod_price=models.FloatField()
-    prod_quanitity=models.IntegerField()
-    prod_date=models.DateField()
-    product_images=models.ForeignKey(product_image,on_delete=models.CASCADE)
+    prod_desc_id = models.AutoField(unique=True, db_index=True, primary_key=True)
+    main_product = models.ForeignKey(product,on_delete=models.CASCADE)
+    prod_color = models.ForeignKey(color,on_delete=models.CASCADE)
+    prod_price = models.FloatField()
+    prod_quanitity = models.IntegerField()
+    prod_date = models.DateField()
+    product_images = models.ForeignKey(product_image,on_delete=models.CASCADE)
 
 class customer(models.Model):
-    cust_id=models.AutoField(unique=True, db_index=True,primary_key=True)
-    cust_name=models.CharField(max_length=100)
-    cust_email=models.EmailField(max_length = 254)
+    cust_id = models.AutoField(unique=True, db_index=True,primary_key=True)
+    cust_name = models.CharField(max_length=100)
+    cust_email = models.EmailField(max_length = 254)
     cust_pass=models.CharField(max_length=100)
     cust_contact=models.CharField(max_length=100)
     cust_address=models.CharField(max_length=100)
@@ -64,28 +65,28 @@ class wishlist (models.Model):
     wishlist_cust=models.ForeignKey(customer, on_delete=models.CASCADE)
 
 class wishlist_item(models.Model):
-    wishlist_item_id=models.AutoField(unique=True,primary_key=True,db_index=True)
-    wishlist_fk=models.ForeignKey(wishlist,on_delete=models.CASCADE)
-    product_wishlist_id=models.ForeignKey(product,on_delete=models.CASCADE)
-    createdon=models.DateField()
-    modifiedon=models.DateField()
+    wishlist_item_id = models.AutoField(unique=True,primary_key=True,db_index=True)
+    wishlist_fk = models.ForeignKey(wishlist,on_delete=models.CASCADE)
+    product_wishlist_id = models.ForeignKey(product,on_delete=models.CASCADE)
+    createdon = models.DateField()
+    modifiedon = models.DateField()
 
 class cart (models.Model):
     cart_id=models.AutoField(unique=True, db_index=True,primary_key=True)
     cart_cust=models.ForeignKey(customer, on_delete=models.CASCADE)
 
 class cart_item(models.Model):
-    cart_item_id=models.AutoField(unique=True,primary_key=True,db_index=True)
+    cart_item_id = models.AutoField(unique=True,primary_key=True,db_index=True)
     cart_fk=models.ForeignKey(cart,on_delete=models.CASCADE)
-    product_cart=models.ForeignKey(product,on_delete=models.CASCADE)
-    created_on=models.DateField()
-    modified_on=models.DateField()
+    product_cart = models.ForeignKey(product,on_delete=models.CASCADE)
+    created_on = models.DateField()
+    modified_on = models.DateField()
 
 class order(models.Model):
-    order_id=models.AutoField(unique=True,primary_key=True,db_index=True)
-    order_prod=models.ForeignKey(product,on_delete=models.CASCADE)
-    order_quantity=models.IntegerField()
-    order_price=models.FloatField()
+    order_id = models.AutoField(unique=True,primary_key=True,db_index=True)
+    order_prod = models.ForeignKey(product,on_delete=models.CASCADE)
+    order_quantity = models.IntegerField()
+    order_price = models.FloatField()
 
 class sales(models.Model):
     sales_id=models.AutoField(unique=True,primary_key=True,db_index=True)

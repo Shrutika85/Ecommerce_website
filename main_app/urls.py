@@ -6,6 +6,7 @@ urlpatterns = [
 path('SignedIn',views.insertUser),
 path('LoggedIn',views.userLogin),
 path('', views.home, name='home'),
+path('Logout',views.logout),
 path('home', views.home, name='home'),
 path('order', views.getOrderPage),
 path('Aboutus', views.getAboutPage),
@@ -17,6 +18,6 @@ path('wishlist', views.getWishlistPage),
 path('bag', views.getBagPage),
 path('wishlist_empty', views.getEmptyWishlist),
 path('bag_empty', views.getEmptyBag),
-path('brands', views.getBrands)
+path('brands', views.getBrands),
 ]
 
