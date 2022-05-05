@@ -3,39 +3,33 @@
 <html lang="en">
 <head>
     <script>
+    function fullName(){
+    var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    var name = document.getElementById("nm").value;
+    if(!regName.test(name))
+    {
+        document.getElementById("dname").innerHTML="Enter valid fullname";
+        document.getElementById("dname").style.color="#b3375b";
+    }
+    else
+    {
+        document.getElementById("dname").innerHTML=" ";
+    }
+}
     function email(){
-    var x = document.getElementById("ml").value;
     var regName =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var name = document.getElementById("ml").value;
     if(!regName.test(name))
     {
         document.getElementById("demail").innerHTML="Enter valid email";
         document.getElementById("demail").style.color="#b3375b";
-        return false;
     }
     else
     {
         document.getElementById("demail").innerHTML=" ";
     }
 }
-function allCheck(){
-        alert("i am all chk")
-       if(document.getElementsById("p1")!=document.getElementById("p2"))
-       {
-           alert("password mismatched");
-            return false;
-       }
-       else {
-           alert("password matched");
-           return true;
-       }
-        {#if (document.getElementsByName("userpass")==document.getElementsByName("password2"))#}
-        {#    return true;#}
-        {#else#}
-        {#    return false;#}
-}
 function phone(){
-    var x = document.getElementById("phn").value;
     var regName = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im;
     var name = document.getElementById("phn").value;
     if(!regName.test(name))
@@ -49,23 +43,26 @@ function phone(){
         document.getElementById("dphone").innerHTML=" ";
     }
 }
-function fullName(){
-    var x = document.getElementById("nm").value;
+function signupChk()
+{
+    alert("i am signup");
     var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
     var name = document.getElementById("nm").value;
-    if(!regName.test(name))
+    var mlreg =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var mail = document.getElementById("ml").value;
+    var phnreg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im;
+    var phn = document.getElementById("phn").value;
+    if(regName.test(name) && mlreg.test(mail) && phnreg.test(phn) && document.getElementById("p1").value===document.getElementById("p1").value)
     {
-        document.getElementById("dname").innerHTML="Enter valid full name";
-        document.getElementById("dname").style.color="#b3375b";
-        return false;
+     alert("i am turned true");
+        return true;
     }
-    else
-    {
-        document.getElementById("dname").innerHTML=" ";
-    }
+    alert("i am turned false");
+    document.getElementsByName("Sigin_form").reset();
+    return false;
 }
-    </script>
 
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title style="font-family: 'Arial Narrow'">Clothiify :The look you need, The convenience you crave </title>
@@ -117,7 +114,7 @@ function fullName(){
 </head>
 <body>
     <section class="login-clean" style="background: #eccac9;">
-        <form method="post"  action="./SignedIn" style="background: rgba(255,255,255,0.36);box-shadow: 10px 0px 17px 5px #b3375b;border-radius: 8px;width: 1524px;">
+        <form method="post"  name="Sigin_form" action="./SignedIn" onsubmit="return signupChk()" style="background: rgba(255,255,255,0.36);box-shadow: 10px 0px 17px 5px #b3375b;border-radius: 8px;width: 1524px;">
             {% csrf_token %}
 {#            <h2 class="visually-hidden">Login Form</h2>#}
             <div class="illustration"><img src="{% static 'img/icon-light-removebg-preview.png'%}" style="font-size: 80px;width: 300px;margin: -25px 0 0 -30px;"></div>
@@ -143,7 +140,7 @@ function fullName(){
             <label class="form-label" style="font-family: Almendra, serif;font-weight: bold;">Upload Your Front View Image</label><pre></pre>
             <input class="form-control" type="file" value="Image" accept="image/*" name="filepath"  required="" title="Upload Image" style="margin: 0 0 15px 0;font-family: Abel, sans-serif;font-size: 14px;width: 236px;border-radius: 8px;">
             <div class="mb-3">
-                <button class="btn btn-primary d-block w-100" type="submit"  onclick="allCheck()" style="background: #b3375b;font-family: Rancho, serif;font-size: 30px;">Sign In</button></div>
+                <button class="btn btn-primary d-block w-100" type="submit"  style="background: #b3375b;font-family: Rancho, serif;font-size: 30px;">Sign In</button></div>
 {#            <a class="forgot" href="#" style="font-family: 'Abhaya Libre', serif;font-size: 14px;">Forgot your email or password?</a>#}
         </form>
     </section>

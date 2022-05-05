@@ -14,7 +14,7 @@ def home(request, cursor=None):
     return render(request, 'index.html',context)
 
 def userLogin(request):
-    context = {'brands': brand.objects.all(), 'category': category.objects.all()}
+    context = {'brands': brand.objects.all(), 'category': category.objects.all(),"logstatus":True}
     mail = request.POST.get('user_email', None)
     password = request.POST.get('user_password', None)
     if customer.objects.filter(cust_email=mail, cust_pass=password).exists():
@@ -23,8 +23,9 @@ def userLogin(request):
         request.session["user_id"]=request.POST.get('user_email', None)
         print("you are ",request.session.get("user_id"))
         return render(request, 'index.html', context)
-    print("user invalid")
-    return redirect('/Login')
+    else:
+        context.update({"logstatus": False})
+        return render(request, 'Log-in.html', context)
 
 def insertUser(request):
     if request.POST.get('userpass', None) == request.POST.get('password2', None):
@@ -71,7 +72,8 @@ def getAboutPage(request):
     return render(request,"./About us.html")
 
 def getLoginPage(request):
-    return render(request,"./Log-in.html")
+    context={'logstatus':True}
+    return render(request,"./Log-in.html",context)
 
 def getSignUp(request):
     return render(request,"./sign-in.html")
