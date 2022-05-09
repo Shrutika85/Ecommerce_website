@@ -64,37 +64,21 @@
             <footer id="myFooter" style="padding:0px;"></footer>
             <section class="team-grid">
                 <div class="container">
+    <span style="font-family: Amita, serif;font-weight: bold;"></span>
                     <div class="intro"></div>
-                    <div class="row people" style="margin: 0 0 0px 0;padding: 0 0 0 0 ;" onclick="location.href='products_view.html'">
-                        <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url({% static 'img/globus.jpg' %}) no-repeat;background-size: auto;margin: 0 0 0 0px;border-width: 2px;border-style: solid;">
-                                <div class="cover" style="background: rgba(0,0,0,0.85);">
-                                    <p class="title" style="color: #eccac9;margin: -50px 0 0 0;"><br><strong>FASHION FOR CHANGING WORLD</strong><br><br></p>
+                 <div class="row people" style="margin: 0 0 0px 0;padding: 0 0 0 0 ;">
+                     {% for brand in brands %}
+                        <div class="col-md-4 col-lg-3 item" >
+                           <form method="get" action="./products">
+                            <button type="submit"   name="main" value="{{ category|add:"_"|add:brand.brand_name }}" style="background: url('media/{{brand.brand_image}}') no-repeat;background-size:cover;margin: 0 0 0 0px;border-width: 0px;border-style: solid;">
+                                <div onMouseOver="this.style.background='rgba(0,0,0,0.85)'" onMouseOut="this.style.background='#ffffff00'" style="display:block;background-size:cover;margin: 0 0 0 0px;border-width: 2px;border-style: solid">
+                                    <p class="title" style="color:#fff;margin: -70px 0 0 0;padding: 100px"><br><strong>{{brand.brand_desc}}</strong><br><br></p>
                                 </div>
-                            </div>
+                            </button>
+                        </form>
                         </div>
-                        <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url({% static 'img/biba.png' %}) no-repeat;background-size: contain;border-width: 2px;border-style: solid;">
-                                <div class="cover" style="background: rgba(0,0,0,0.85);">
-                                    <p class="title" style="color: #eccac9;margin: -50px 0 0 0 ;"><br><strong>CHANGE IS BEAUTIFUL</strong><br><br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url({% static 'img/h&m.png' %}) no-repeat;border-width: 2px;border-style: solid;">
-                                <div class="cover" style="background: rgba(0,0,0,0.85);">
-                                    <p class="title" style="color: #eccac9;margin: -50px 0 0 0 ;"><br><strong>HENNES &amp; MAURITZ</strong><br><br></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 item">
-                            <div class="box" style="background: url({% static 'img/levis.jpg' %}) no-repeat;border-width: 2px;border-style: solid;">
-                                <div class="cover" style="background: rgba(0,0,0,0.85);">
-                                    <p class="title" style="color: #eccac9;margin: -50px 0 0 0;"><br><strong>LIVE IN LEVI'S</strong><br><br><br></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                 </div>
                 </div>
             </section>
             <footer id="myFooter" style="padding:0px;"></footer>
@@ -106,15 +90,27 @@
             <div class="carousel-item active" style="font-family: Almendra, serif;">
                 <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse"
             style="text-align: center;background: url('media/{{bestoffer.img1}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;">
-                    <label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
+                    <label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label>
+                 <form method="get" action="./products">
+                    <button class="btn btn-primary" type="submit" name="main" value="{{ category |add:"_Offers"}}" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button>
+                    </form>
+                </div>
             </div>
             <div class="carousel-item" style="width: 1336px;height: 499px;background: #eccac9;font-family: Almendra, serif;">
                 <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse"
-                     style="text-align: center;background: url('media/{{bestoffer.img2}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
+                     style="text-align: center;background: url('media/{{bestoffer.img2}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label>
+                    <form method="get" action="./products">
+                    <button class="btn btn-primary" type="submit" name="main" value="{{ category |add:"_Offers"}}" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button>
+                    </form>
+                </div>
             </div>
             <div class="carousel-item" style="width: 1336px;height: 499px;background: #eccac9;font-family: Almendra, serif;">
                 <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse"
-                     style="text-align: center;background: url('media/{{bestoffer.img3}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button></div>
+                     style="text-align: center;background: url('media/{{bestoffer.img3}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px #b3375b;"><label class="form-label" style="margin: 60px 0 0 970px;width: 200px;height: 100px;color: #000000;font-size: 75px;">Best&nbsp;</label><label class="form-label" style="margin: -30px 0 0 1065px;width: 240px;height: 120px;color: #000000;font-size: 100px;">&nbsp;Offers</label>
+                    <form method="get" action="./products">
+                    <button class="btn btn-primary" type="submit" name="main" value="{{ category |add:"_Offers"}}" style="margin: 70px 0 0 1130px;background: #b3375b;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;border-width: 2px;border-color: #000000;">Buy&nbsp; &nbsp;Now</button>
+                    </form>
+                </div>
             </div>
             {% endfor %}
         </div>
@@ -132,15 +128,26 @@
                 <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse"
                      style="text-align: center;background: url('media/{{trend.img1}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;">
                     <label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label>
-                    <button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
+                <form action="./products" method=""get>
+                    <button class="btn btn-primary"  type="submit" name="main" value="{{ category |add:"_Trends"}}" style="margin: 170px 1200px 0px -350px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;New</button>
+                   </form>
+                </div>
             </div>
             <div class="carousel-item" style="font-family: Almendra, serif;">
                 <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse"
-                     style="text-align: center;background: url('media/{{trend.img2}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
+                     style="text-align: center;background: url('media/{{trend.img2}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label>
+                <form action="./products" method=""get>
+                    <button class="btn btn-primary"  type="submit" name="main" value="{{ category |add:"_Trends"}}" style="margin: 170px 1200px 0px -350px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;New</button>
+                   </form>
+                </div>
             </div>
             <div class="carousel-item" style="font-family: Almendra, serif;">
                 <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4" data-bss-hover-animate="pulse"
-                     style="text-align: center;background: url('media/{{trend.img3}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label><button onclick="location.href='product_details.html'" class="btn btn-primary" type="button" style="margin: 300px 0 0 -170px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;Now</button></div>
+                     style="text-align: center;background: url('media/{{trend.img3}}') no-repeat, var(--bs-gray-800);height: 500px;width: 890px;background-size: cover, auto;box-shadow: 0px 2px 17px 6px var(--bs-white);margin: 0 0 0 516px;"><label class="form-label" style="margin: 0px 0 0 -1530px;font-size: 23px;">Leading</label><label class="form-label" style="font-size: 70px;margin: 10px 0 0 0px;font-family: 'Kaushan Script', serif;">Trends</label>
+                    <form action="./products" method=""get>
+                    <button class="btn btn-primary"  type="submit" name="main" value="{{ category |add:"_Trends"}}" style="margin: 170px 1200px 0px -350px;background: #eccac9;width: 120px;height: 45px;font-size: 19px;font-family: Bitter, serif;font-weight: bold;color: #000000;border: 2px solid #fcfeff ;">Buy&nbsp; &nbsp;New</button>
+                   </form>
+                </div>
             </div>
 {% endfor %}
         </div>

@@ -59,28 +59,36 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center" style="padding: 30px 0 0 0;font-family: 'IM Fell English SC', serif;font-size: 60px;margin: 40px 0 30px 0;">Welcome in Bag</h2>
+                    <h2 class="text-center" style="padding: 30px 0 0 0;font-family: 'IM Fell English SC', serif;font-size: 60px;margin: 40px 0 30px 0;">Bag</h2>
                     <div class="gift row" style="margin: 30px 0 30px 0;border-color: #eccac9;box-shadow: 2px 2px 16px 6px #eccac9;">
-                        <div class="gift__img col-sm-3 col-12" style="border-width: 2px;border-color: #eccac9;background: url(&quot;https://cdn.bootstrapstudio.io/placeholders/1400x800.png&quot;);"><img src="{%static 'img/tops.jpg'%}" style="width: 300px;">
-                            <div class="gift__rating"><span data-animation="animated fadeInLeft" style="font-family: roboto;padding: 0 0px 0 0;">4.4</span><i class="fa fa-star"></i></div>
+                        <div class="gift__img col-sm-3 col-12" style="border-width: 2px;border-color: #eccac9;background: url(&quot;https://cdn.bootstrapstudio.io/placeholders/1400x800.png&quot;);"><img src='media/{{ product.img }}' style="width: 300px;">
+                            <div class="gift__rating"><span data-animation="animated fadeInLeft" style="font-family: roboto;padding: 0 0px 0 0;">{{product.size}}</span><i class=""></i></div>
                         </div>
                         <div class="gift__info col-sm-9 col-12">
-                            <h4 class="gift__name" style="font-family: 'Abhaya Libre', serif;font-size: 35px;color: #b3375b;">Net-Velvet Topzz<br></h4>
+                            <h4 class="gift__name" style="font-family: 'Abhaya Libre', serif;font-size: 35px;color: #b3375b;">{{ product.name }}<br></h4>
                             <div class="gift__details">
-                                <p style="font-family: Bitter, serif;"><br>Itzz fancy<br><br></p>
+                                <p style="font-family: Bitter, serif;"><br>{{ product.desc }}<br><br></p>
                             </div>
                             <div class="gift__bottom row">
                                 <div class="gift__price-wrap col-12 col-sm-6">
                                     <div class="gift__normal-price"></div>
                                     <div class="gift__today-price"></div>
-                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Colour&nbsp; :&nbsp; &nbsp;Red</h3>
-                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Price&nbsp; &nbsp;:&nbsp; &nbsp;Rs. 2250</h3>
+                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Colour&nbsp; :&nbsp; &nbsp;{{ product.color }}</h3>
+                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Price&nbsp; &nbsp;:&nbsp; &nbsp;Rs. {{ product.price }}</h3>
                                 </div>
                                 <div class="gift__cta-wrap col-12 col-sm-6" style="width: 300px;">
-                                    <a class="flux_cta gift__cta" href="./order" style="width: 220px;height: 55px;background: #b3375b;font-size: 19px;">
-                                        <i class="fas fa-box-open" style="margin: 0 10px 0 0 ;"></i>Order Now</a>
-                                    <a class="flux_cta gift__cta" href="./wishlist" style="width: 220px;margin: 10px 0 0 0;height: 55px;background: #eccac9;color: #000000;font-size: 18px;"><i class="fa fa-heart" style="margin: 0 10px 0 0 ;"></i>Move to Wishlist</a>
-                                    <a class="flux_cta gift__cta"  href="./bag_empty" style="margin: 10px;width: 220px;color: var(--orange);background: var(--white);border-style: solid;border-color: var(--orange);height: 55px;font-size: 18px; background-color: white;"><i class="typcn typcn-times" style="margin: 0 10px 0 0;font-size: 20px;"></i>Remove</a></div>
+                             <form method="get" action="./order">
+                            <button type="submit" class="btn btn-primary pull-right" name="prod_id" value="{{ product.id }}" style="border-width:3px;border-color:black;margin: 20px 20px 0 10px;width: 220px;color: #ffffff;width: 220px;height: 55px;background: #b3375b;font-size: 19px;height: 55px;font-family: 'Titillium Web', sans-serif;font-size: 18px;font-weight: bold;">
+                                <i class="fas fa-box-open" style="margin: 0 10px 0 0 ;"></i>&nbsp;Order Now</button>
+                            </form>
+                            <form method="get" action="./wishlist">
+                            <button type="submit" class="btn btn-primary pull-right" name="prod_id" value="{{ product.id }}" style="border-width:3px;border-color:black;margin: 20px 20px 0 10px;width: 220px;color: #323232;background: #eccac9;height: 55px;font-family: 'Titillium Web', sans-serif;font-size: 18px;font-weight: bold;">
+                                <i class="fa fa-heart" style="margin: 0 10px 0 0 ;"></i>&nbsp;Move to Wishlist</button>
+                            </form>
+                    <form method="get" action="./bag">
+                            <button type="submit" class="btn btn-primary pull-right" name="prod_id" value="{{ product.id }}"  style="border-width:3px;border-color:black;margin: 20px 20px 0 10px;width: 220px;color: var(--orange);background: var(--white);border-style: solid;border-color: var(--orange);height: 55px;font-size: 18px; background-color: white;">
+                                <i class="fa fa-remove" style="margin: 0 10px 0 0 ;"></i>&nbsp;Remove</button>
+                            </form>
                             </div>
                         </div>
                     </div>

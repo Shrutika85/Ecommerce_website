@@ -19,6 +19,7 @@ class product(models.Model):
     product_cat = models.ForeignKey(category, on_delete=models.CASCADE)
     product_offer = models.BooleanField(default=False)
     product_description=models.CharField(max_length=500,default="none")
+    product_size=models.CharField(max_length=300,default="XL")
 
 class trends(models.Model):
     trend_id = models.AutoField(unique=True, db_index=True,primary_key=True)
@@ -153,3 +154,64 @@ class cust_review(models.Model):
     prod_review=models.ForeignKey(product,on_delete=models.CASCADE)
     cust_review=models.ForeignKey(customer,on_delete=models.CASCADE)
     review_desc=models.CharField(max_length=500)
+
+class prod_grid_view:
+    id=int
+    name = str
+    img = str
+    price = float
+    desc = str
+    def __init__(self,id,name,p,im1,des):
+        self.id=id
+        self.name = name
+        self.price = p
+        self.img = im1
+        self.desc = des
+
+class prod_view:
+    id=int
+    name=str
+    desc=str
+    color=str
+    price=float
+    size=str
+    offer=bool
+    quantity=int
+    cat_name=str
+    img1=str
+    img2 = str
+    img3 = str
+    img4 = str
+    def __init__(self,id,name,desc,color,quantity,size,offer,price,cat_name,img1,img2,img3,img4):
+        self.id=id
+        self.name=name
+        self.desc=desc
+        self.color=color
+        self.quantity = quantity
+        self.price=price
+        self.size=size
+        self.offer=offer
+        self.cat_name=cat_name
+        self.img1=img1
+        self.img2=img2
+        self.img3=img3
+        self.img4=img4
+
+class user_prod:
+    id=int
+    name=str
+    desc=str
+    color:str
+    offer:bool
+    price:float
+    size=str
+    img:str
+    def __init__(self, id, name, desc, color, price,offer, size,img1):
+        self.id = id
+        self.name = name
+        self.desc = desc
+        self.color = color
+        self.price = price
+        self.offer = offer
+        self.size=size
+        self.img = img1

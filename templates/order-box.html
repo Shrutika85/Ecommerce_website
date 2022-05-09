@@ -62,20 +62,20 @@
                 <div class="col-md-12">
                     <h2 class="text-center" style="padding: 30px 0 0 0;font-family: 'IM Fell English SC', serif;font-size: 60px;margin: 40px 0 30px 0;">Your Order's</h2>
                     <div class="gift row" style="margin: 30px 0 30px 0;border-color: #eccac9;box-shadow: 2px 2px 16px 6px #eccac9;">
-                        <div class="gift__img col-sm-3 col-12" style="border-width: 2px;border-color: #eccac9;"><img src="{%static 'img/your%20oders.jpeg'%}">
-                            <div class="gift__rating"><span data-animation="animated fadeInLeft" style="font-family: roboto;padding: 0 0px 0 0;">4.4</span><i class="fa fa-star"></i></div>
+                        <div class="gift__img col-sm-3 col-12" style="border-width: 2px;border-color: #eccac9;"><img src='media/{{ product.img }}'>
+                            <div class="gift__rating"><span data-animation="animated fadeInLeft" style="font-family: roboto;padding: 0 0px 0 0;">{{ product.size }}</span><i class="fa fa-star"></i></div>
                         </div>
                         <div class="gift__info col-sm-9 col-12">
-                            <h4 class="gift__name" style="font-family: 'Abhaya Libre', serif;font-size: 35px;color: #b3375b;">Flare Brown&nbsp;<br></h4>
+                            <h4 class="gift__name" style="font-family: 'Abhaya Libre', serif;font-size: 35px;color: #b3375b;">{{ product.name }}&nbsp;<br></h4>
                             <div class="gift__details">
-                                <p style="font-family: Bitter, serif;">Women fit, party wear look single piece.&nbsp;</p>
+                                <p style="font-family: Bitter, serif;">{{ product.desc }}&nbsp;</p>
                             </div>
                             <div class="gift__bottom row">
                                 <div class="gift__price-wrap col-12 col-sm-6">
                                     <div class="gift__normal-price"></div>
                                     <div class="gift__today-price"></div>
-                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Colour&nbsp; :&nbsp; &nbsp;Black</h3>
-                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Price&nbsp; &nbsp;:&nbsp; &nbsp;Rs. 2250</h3>
+                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Colour&nbsp; :&nbsp; &nbsp;{{ product.color }}</h3>
+                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Price&nbsp; &nbsp;:&nbsp; &nbsp;Rs.{{ product.price }}</h3>
                                 </div>
                                 <div class="gift__cta-wrap col-12 col-sm-6" style="width: 300px;margin: 40px 0 0 10px;"><a class="flux_cta gift__cta" target="_blank" href="#" style="width: 250px;height: 55px;background: #e2e2e2;font-size: 19px;border-color: #b3375b;color: #b3375b;border-radius: 0px;font-family: 'Abhaya Libre', serif;">Purchase Date : 19-02-22</a><a class="flux_cta gift__cta" target="_blank" href="#" style="width: 250px;height: 55px;background: #e2e2e2;font-size: 19px;border-color: #b3375b;color: #b3375b;border-radius: 0px;font-family: 'Abhaya Libre', serif;margin: 15px 0 0 0 ;">Delivered Date : 23-02-22</a></div>
                             </div>

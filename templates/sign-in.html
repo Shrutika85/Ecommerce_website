@@ -43,6 +43,18 @@ function phone(){
         document.getElementById("dphone").innerHTML=" ";
     }
 }
+function password_match(){
+
+    if(document.getElementById("p1").value!=document.getElementById("p2").value)
+    {
+        document.getElementById("dpass").innerHTML="Passwords don't match";
+        document.getElementById("dpass").style.color="#b3375b";
+    }
+    else
+    {
+        document.getElementById("dpass").innerHTML=" ";
+    }
+}
 function signupChk()
 {
     alert("i am signup");
@@ -52,16 +64,22 @@ function signupChk()
     var mail = document.getElementById("ml").value;
     var phnreg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im;
     var phn = document.getElementById("phn").value;
-    if(regName.test(name) && mlreg.test(mail) && phnreg.test(phn) && document.getElementById("p1").value===document.getElementById("p1").value)
+    if(regName.test(name) && mlreg.test(mail) && phnreg.test(phn))
     {
-     alert("i am turned true");
-        return true;
+        if(document.getElementById("p1").value==document.getElementById("p2").value)
+        {
+            alert("User is Registered");
+            return true;
+        }
+        else
+        {
+            document.getElementById("dpass").value="Passwords don't match";
+             return false;
+        }
     }
-    alert("i am turned false");
-    document.getElementsByName("Sigin_form").reset();
+    {#document.getElementsByName("Sigin_form").reset();#}
     return false;
 }
-
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -129,8 +147,8 @@ function signupChk()
             <input id="p1" minlength="6" maxlength="6" class="form-control" required="" type="password" name="userpass" style="border-radius: 8px;font-family: Acme, sans-serif;">
             <div  style="font-size: 14px"></div><br>
             <label class="form-label" style="font-family: Almendra, serif;font-weight: bold; ">Confirm<br> Password</label>&nbsp;&nbsp;&nbsp;
-            <input id="p2" minlength="6" maxlength="6" class="form-control" type="password" required="" name="password2" style="margin: 0 0 15px 0;border-radius: 8px;font-family: Acme, sans-serif;"><br>
-            <div  style="font-size: 14px"></div><br>
+            <input id="p2" minlength="6" maxlength="6" class="form-control" type="password" onkeyup="password_match()" required="" name="password2" style="margin: 0 0 15px 0;border-radius: 8px;font-family: Acme, sans-serif;"><br>
+            <div id="dpass" style="font-size: 14px"></div><br>
             <label class="form-label" style="font-family: Almendra, serif;font-weight: bold;">Contact</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input id="phn" class="form-control" required="" type="number" onkeyup="phone()" name="contact" style="margin: 0 0 15px 0;border-radius: 8px;font-family: Acme, sans-serif;">
             <div id="dphone" style="font-size: 14px"></div><br>
