@@ -1,15 +1,16 @@
 from pydoc import resolve
 from pyexpat.errors import messages
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from main_app.models import *
+from django.core.mail import send_mail
+import datetime as dt
 #from PIL import Image
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
 from django.db import connection
 def home(request, cursor=None):
-    print(request.POST)
     context = {'brands': brand.objects.all(), 'category': category.objects.all()}
     return render(request, 'index.html',context)
 
@@ -18,9 +19,10 @@ def userLogin(request):
     mail = request.POST.get('user_email', None)
     password = request.POST.get('user_password', None)
     if customer.objects.filter(cust_email=mail, cust_pass=password).exists():
+        cust=customer.objects.filter(cust_email=mail)
         # isLogin = True
         context.update({"logstatus":True})
-        request.session["user_id"]=request.POST.get('user_email', None)
+        request.session["user_id"]=cust[0].cust_id
         print("you are ",request.session.get("user_id"))
         return render(request, 'index.html', context)
     else:
@@ -71,10 +73,20 @@ def getOrderPage(request):
         clr = color.objects.filter(prod_color=main_id)[0].color_name
         prod_desc = product_desc.objects.filter(main_product=main_id)[0]
         cat = category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
-        pd = user_prod(main_id, prod.product_name, prod.product_description, clr, prod_desc.prod_price,
-                       prod.product_offer, prod.product_size, imgl)
+        pd = user_prod(main_id, prod.product_name, prod.product_description, clr, prod_desc.prod_price,prod.product_offer, prod.product_size, imgl)
         print(pd)
         context = {"product": pd}
+        name = "Shrutikas "+prod.product_name
+        subject = "django mail test"+prod.product_description
+        message = f"Dear Shrutika, your order for {prod.product_name} with {prod.product_description} has been successfully placed"
+        print(name, subject, message)
+        send_mail(
+            subject,
+            message,
+            'clothiify@gmail.com',
+            ['mahajanshrutika8@gmail.com'],
+            fail_silently=False,
+        )
         return render(request,"./order-box.html",context)
     else:
         return render(request,'./not-login.html')
@@ -142,7 +154,7 @@ def getProducts(request):
             p1 =   prod_grid_view(id,x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
             prod_l.append(p1)
         context = {"prod_list": prod_l}
-    elif contentType == 'H&M':
+    elif contentType == 'HandM':
         productlist = product.objects.filter(product_brand=3)
         prod_l = []
         for x in productlist:
@@ -322,8 +334,223 @@ def getProducts(request):
             p1 =   prod_grid_view(id,x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
             prod_l.append(p1)
         context = {"prod_list": prod_l}
+
+
+    elif contentType == 'SKIRTS_GLOBUS':
+        productlist = product.objects.filter(product_brand=1, product_cat=2)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'SKIRTS_BIBA':
+        productlist = product.objects.filter(product_brand=2, product_cat=2)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'SKIRTS_HandM':
+        productlist = product.objects.filter(product_brand=3, product_cat=2)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'SKIRTS_LEVIS':
+        productlist = product.objects.filter(product_brand=4, product_cat=2)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+
+    elif contentType == 'KURTIS_GLOBUS':
+        productlist = product.objects.filter(product_brand=1, product_cat=3)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'KURTIS_BIBA':
+        productlist = product.objects.filter(product_brand=2, product_cat=3)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'KURTIS_HandM':
+        productlist = product.objects.filter(product_brand=3, product_cat=3)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'KURTIS_LEVIS':
+        productlist = product.objects.filter(product_brand=4, product_cat=3)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+
+    elif contentType == 'SHIRTS_GLOBUS':
+        productlist = product.objects.filter(product_brand=1, product_cat=5)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'SHIRTS_BIBA':
+        productlist = product.objects.filter(product_brand=2, product_cat=5)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'SHIRTS_HandM':
+        productlist = product.objects.filter(product_brand=3, product_cat=5)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'SHIRTS_LEVIS':
+        productlist = product.objects.filter(product_brand=4, product_cat=5)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'T-SHIRTS_GLOBUS':
+        productlist = product.objects.filter(product_brand=1, product_cat=5)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'T-SHIRTS_BIBA':
+        productlist = product.objects.filter(product_brand=2, product_cat=5)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'T-SHIRTS_HandM':
+        productlist = product.objects.filter(product_brand=3, product_cat=5)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'T-SHIRTS_LEVIS':
+        productlist = product.objects.filter(product_brand=4, product_cat=5)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+
+    elif contentType == 'JEANS_GLOBUS':
+        productlist = product.objects.filter(product_brand=1, product_cat=6)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'JEANS_BIBA':
+        productlist = product.objects.filter(product_brand=2, product_cat=6)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'JEANS_HandM':
+        productlist = product.objects.filter(product_brand=3, product_cat=6)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
+    elif contentType == 'JEANS_LEVIS':
+        productlist = product.objects.filter(product_brand=4, product_cat=6)
+        prod_l = []
+        for x in productlist:
+            id = x.product_id
+            prod_des = product_desc.objects.filter(main_product=id)
+            prod_img = product_image.objects.filter(prod_image=id)
+            p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
+            prod_l.append(p1)
+        context = {"prod_list": prod_l}
     context.update({'brands':brand.objects.all()})
     return render(request, "./products.html", context)
+def insertfeedback(request):
+    mail = request.GET.get('email', None)
+    msg = request.GET.get('feedback', None)
+    f=feedback()
+    f.desc=msg
+    f.email=mail
+    if(request.session.has_key('user_id')):
+        f.cust_feed_id=request.session.get("user_id")
+    f.save()
+    return render(request,"./About us.html")
 
 def getProductsView(request):
     context={}
@@ -339,45 +566,91 @@ def getProductsView(request):
     return render(request,"./product_details.html",context)
 
 def getBagPage(request):
+    context = {}
     if (request.session.has_key('user_id')):
-        context = {}
-        main_id = (request.GET.get('prod_id', None))
-        prod = product.objects.filter(product_id=main_id)[0]
-        imgl = product_image.objects.filter(prod_image=main_id)[0].img1
-        clr = color.objects.filter(prod_color=main_id)[0].color_name
-        prod_desc = product_desc.objects.filter(main_product=main_id)[0]
-        cat = category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
-        pd = user_prod(main_id, prod.product_name, prod.product_description, clr, prod_desc.prod_price,
-        prod.product_offer, prod.product_size, imgl)
-        print(pd)
-        context = {"product": pd}
-        return render(request,"./bag.html",context)
+        if (request.GET.get('prod_id', None) != None):
+            c = cart()
+            c.cart_cust_id = request.session.get("user_id")
+            c.save()
+            ci = cart_item()
+            ci.created_on = dt.datetime.now()
+            ci.modified_on = dt.datetime.now()
+            ci.cart_fk_id = c.cart_id
+            ci.product_cart_id = (request.GET.get('prod_id', None))
+            ci.save()
+        cart_prod = []
+        cartobj = cart.objects.filter(cart_cust_id=request.session.get("user_id"))
+        for car in cartobj:
+            cartlistobj = cart_item.objects.filter(cart_fk_id=car.cart_id)
+            for x in cartlistobj:
+                main_id = x.product_cart_id
+                prod = product.objects.filter(product_id=main_id)[0]
+                imgl = product_image.objects.filter(prod_image=main_id)[0].img1
+                clr = color.objects.filter(prod_color=main_id)[0].color_name
+                prod_desc = product_desc.objects.filter(main_product=main_id)[0]
+                cat = category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
+                pd = user_prod(main_id, prod.product_name, prod.product_description, clr, prod_desc.prod_price,
+                prod.product_offer, prod.product_size, imgl)
+                cart_prod.append(pd)
+        if not cart_prod:
+            return render(request, "./Login(bag-empty).html")
+        context = {"product": cart_prod}
+        return render(request, "./bag.html", context)
     else:
-        return render(request,'./not-login.html')
+        return render(request, './not-login.html')
+
+def getCartremoved(request):
+    if (request.session.has_key('user_id')):
+        id=request.session.get("user_id")
+        prod_id = request.GET.get('prod_id', None)
+        cart_item.objects.filter(product_cart_id=prod_id).delete()
+    return HttpResponseRedirect('/bag')
 
 def getWishlistPage(request):
+    context = {}
     if(request.session.has_key('user_id')):
-        context = {}
-        main_id = (request.GET.get('prod_id', None))
-        prod = product.objects.filter(product_id=main_id)[0]
-        imgl = product_image.objects.filter(prod_image=main_id)[0].img1
-        clr = color.objects.filter(prod_color=main_id)[0].color_name
-        prod_desc = product_desc.objects.filter(main_product=main_id)[0]
-        cat = category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
-        pd = user_prod(main_id, prod.product_name, prod.product_description, clr, prod_desc.prod_price,
-        prod.product_offer, prod.product_size, imgl)
-        print(pd)
-        context = {"product": pd}
-
+        if(request.GET.get('prod_id', None)!=None):
+            w=wishlist()
+            w.wishlist_cust_id=request.session.get("user_id")
+            w.save()
+            wi = wishlist_item()
+            wi.createdon=dt.datetime.now()
+            wi.modifiedon=dt.datetime.now()
+            wi.wishlist_fk_id=w.wishlist_id
+            wi.product_wishlist_id_id=(request.GET.get('prod_id', None))
+            wi.save()
+        wish_prod=[]
+        wishobj=wishlist.objects.filter(wishlist_cust_id=request.session.get("user_id"))
+        for wish in wishobj:
+            wishlistobj=wishlist_item.objects.filter(wishlist_fk_id=wish.wishlist_id)
+            for x in wishlistobj:
+                main_id=x.product_wishlist_id_id
+                prod = product.objects.filter(product_id=main_id)[0]
+                imgl = product_image.objects.filter(prod_image=main_id)[0].img1
+                clr = color.objects.filter(prod_color=main_id)[0].color_name
+                prod_desc = product_desc.objects.filter(main_product=main_id)[0]
+                cat = category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
+                pd = user_prod(main_id, prod.product_name, prod.product_description, clr, prod_desc.prod_price,
+                prod.product_offer, prod.product_size, imgl)
+                wish_prod.append(pd)
+        if not wish_prod:
+            return render(request, "./Login(wishlist-empty).html")
+        context = {"product":wish_prod}
         return render(request,"./wishlist.html",context)
     else:
         return render(request,'./not-login.html')
 
+def getWishlistremoved(request):
+    if (request.session.has_key('user_id')):
+        id=request.session.get("user_id")
+        prod_id = request.GET.get('prod_id', None)
+        wishlist_item.objects.filter(product_wishlist_id_id=prod_id).delete()
+    return HttpResponseRedirect('/wishlist')
 def getEmptyWishlist(request):
-    return render(request,"./Login(wishlist empty).html")
+    return render(request, "./Login(wishlist-empty).html")
 
 def getEmptyBag(request):
-    return render(request,"./Login(bag empty).html")
+    return render(request, "./Login(bag-empty).html")
 
 def getBrands(request):
     categoryofhome=(request.GET.get('cat',None))

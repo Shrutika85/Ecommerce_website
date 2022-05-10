@@ -1,5 +1,6 @@
 {% extends "navbar.html" %}
 {% load static %}
+{#{% import mathfilter %}#}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,7 +72,8 @@
 {#                                        }#}
 {#                                        cal(40)#}
 {#                                    </script>#}
-                                    <li id data-animation="animated fadeInRight" id="pricecol" style="text-align: left;font-family: Alatsi, sans-serif;font-size: 20px;color: #e0a4a4;">Price&nbsp; &nbsp;: {{product.price }}</li>
+{#                                    {% load mathfilters %}#}
+                                    <li id data-animation="animated fadeInRight" id="pricecol" style="text-align: left;font-family: Alatsi, sans-serif;font-size: 20px;color: #e0a4a4;">Price&nbsp; &nbsp;: calc({{ product.price }} / 2)</li>
                                 {% else %}
                                 <li data-animation="animated fadeInRight" style="text-align: left;font-family: Alatsi, sans-serif;font-size: 20px;color: #e0a4a4;">Price&nbsp; &nbsp;: {{ product.price }}</li>
                                 {% endif %}
@@ -98,7 +100,6 @@
                     <img class="img-fluid img-thumbnail col-md-3" alt="&quot;" src='media/{{ product.img4 }}' style="padding:0px 0px 0px 0px;height: 100px;width: 100px;border-width: 2px;border-color: #323232;">
                 </div>
             </div>
-            
         </section>
     </div>
 

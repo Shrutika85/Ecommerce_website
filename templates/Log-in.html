@@ -19,7 +19,6 @@ function finalchk()
     var regName =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var name = document.getElementById("e1").value;
     if(name.match(regName)) {
-     alert("i am turned true");
         return true;
         }
     alert("i am turned false");

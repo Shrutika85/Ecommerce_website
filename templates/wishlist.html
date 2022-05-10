@@ -45,9 +45,9 @@
     <link rel="stylesheet" href=" {%static 'css/navbar.css'%}">
     <link rel="stylesheet" href=" {%static 'css/Navigation-with-Search.css'%}">
     <link rel="stylesheet" href=" {%static 'css/Not-login.css'%}">
-    <link rel="stylesheet" href=" {%static 'css/product_details_1_1.css'%}">
-    <link rel="stylesheet" href=" {%static 'css/product_details_1.css'%}">
-    <link rel="stylesheet" href=" {%static 'css/product-view.css'%}">
+    <link rel="stylesheet" href=" {%static 'css/p_details_1_1.css'%}">
+    <link rel="stylesheet" href=" {%static 'css/p_details_1.css'%}">
+    <link rel="stylesheet" href=" {%static 'css/p-view.css'%}">
     <link rel="stylesheet" href=" {%static 'css/sign-in.css'%}">
     <link rel="stylesheet" href=" {%static 'css/styles.css'%}">
     <link rel="stylesheet" href=" {%static 'css/Team-Grid.css'%}">
@@ -60,37 +60,40 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="text-center" style="padding: 30px 0 0 0;font-family: 'IM Fell English SC', serif;font-size: 60px;margin: 40px 0 30px 0;"> Wishlist</h2>
+                    {% for p in product %}
                     <div class="gift row" style="margin: 30px 0 30px 0;border-color: #eccac9;box-shadow: 2px 2px 16px 6px #eccac9;">
-                        <div class="gift__img col-sm-3 col-12" style="border-width: 2px;border-color: #eccac9;"><img src='media/{{ product.img }}'>
-                            <div class="gift__rating"><span data-animation="animated fadeInLeft" style="font-family: roboto;padding: 0 0px 0 0;">{{product.size}}</span><i class="fa fa-star"></i></div>
+                        <div class="gift__img col-sm-3 col-12" style="border-width: 2px;border-color: #eccac9;"><img src='media/{{ p.img }}'>
+                            <div class="gift__rating"><span data-animation="animated fadeInLeft" style="font-family: roboto;padding: 0 0px 0 0;">{{p.size}}</span><i class="fa fa-star"></i></div>
                         </div>
                         <div class="gift__info col-sm-9 col-12">
-                            <h4 class="gift__name" style="font-family: 'Abhaya Libre', serif;font-size: 35px;color: #b3375b;">{{ product.name }}<br></h4>
+                            <h4 class="gift__name" style="font-family: 'Abhaya Libre', serif;font-size: 35px;color: #b3375b;">{{ p.name }}<br></h4>
                             <div class="gift__details">
-                                <p style="font-family: Bitter, serif;"><br>{{ product.desc }}<br><br></p>
+                                <p style="font-family: Bitter, serif;"><br>{{ p.desc }}<br><br></p>
                             </div>
                             <div class="gift__bottom row">
                                 <div class="gift__price-wrap col-12 col-sm-6">
                                     <div class="gift__normal-price"></div>
                                     <div class="gift__today-price"></div>
-                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Colour&nbsp; :&nbsp; &nbsp;{{ product.color }}</h3>
-                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Price&nbsp; &nbsp;:&nbsp; &nbsp;{{ product.price }}</h3>
+                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Colour&nbsp; :&nbsp; &nbsp;{{ p.color }}</h3>
+                                    <h3 class="gift__name" style="font-family: Abel, sans-serif;">Price&nbsp; &nbsp;:&nbsp; &nbsp;{{ p.price }}</h3>
                                 </div>
                                 <div class="gift__cta-wrap col-12 col-sm-6" style="width: 300px;margin: 40px 0 0 10px;">
                                       <form method="get" action="./bag">
-                            <button type="submit" name="prod_id" value="{{ product.id }}" class="btn btn-primary pull-right" style="margin: 15px 20px 0 0;width: 220px;background: #b3375b;color: var(--white);height: 55px;font-family: 'Titillium Web', sans-serif;font-weight: bold;font-size: 18px;"><i class="fa fa-shopping-bag" style="margin: 0 10px 0 0 ;"></i>&nbsp;Add To Bag</button>
+                            <button type="submit" name="prod_id" value="{{ p.id }}" class="btn btn-primary pull-right" style="margin: 15px 20px 0 0;width: 220px;background: #b3375b;color: var(--white);height: 55px;font-family: 'Titillium Web', sans-serif;font-weight: bold;font-size: 18px;"><i class="fa fa-shopping-bag" style="margin: 0 10px 0 0 ;"></i>&nbsp;Add To Bag</button>
                             </form>
-                            <form method="get" action="./">
-                            <button type="submit" class="btn btn-primary pull-right" name="prod_id" value="{{ product.id }}"  style="border-width:3px;border-color:black;margin: 20px 20px 0 10px;width: 220px;color: var(--orange);background: var(--white);border-style: solid;border-color: var(--orange);height: 55px;font-size: 18px; background-color: white;">
+                            <form method="get" action="./wishlist_remove">
+                            <button type="submit" class="btn btn-primary pull-right" name="prod_id" value="{{p.id}}"  style="border-width:3px;border-color:black;margin: 20px 20px 0 10px;width: 220px;color: var(--orange);background: var(--white);border-style: solid;border-color: var(--orange);height: 55px;font-size: 18px; background-color: white;">
                                 <i class="fa fa-remove" style="margin: 0 10px 0 0 ;"></i>&nbsp;Remove</button>
                             </form>
 {#                                    <a class="flux_cta gift__cta"  href="./wishlist_empty" style="margin: 10px;width: 220px;color: var(--orange);background: var(--white);border-style: solid;border-color: var(--orange);height: 55px;font-size: 18px; background-color: white;"><i class="typcn typcn-times" style="margin: 0 10px 0 0;font-size: 20px;"></i>Remove</a></div>#}
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>

@@ -165,12 +165,16 @@
         		</button>
                 </form>
 				<div>
-        			<button class="btn btn-invert" id="iconbg" type="submit" data-toggle="tooltip" data-placement="top" title="Add to Wish list">
+                    <form method="get" action="./wishlist" style="display:inline">
+        			<button class="btn btn-invert" id="iconbg" type="submit" name="prod_id" value="{{prod.id}}" data-toggle="tooltip" data-placement="top" title="Add to Wish list">
         				<i class="fa fa-heart" id="iconstyle"></i>
         			</button>
-        			<button  class="btn btn-invert" id="iconbg" type="submit" data-toggle="tooltip" data-placement="top" title="Add to Bag">
+                    </form>
+                    <form method="get" action="./bag" style="display:inline">
+        			<button class="btn btn-invert" id="iconbg" type="submit" name="prod_id" value="{{prod.id}}" data-toggle="tooltip" data-placement="top" title="Add to Bag">
                     <i class="fa fa-shopping-bag" id="iconstyle"></i>
         			</button>
+                    </form>
         		</div>
         		<div class="info">
         			<div class="row">
