@@ -70,7 +70,6 @@ class wishlist_item(models.Model):
     wishlist_fk = models.ForeignKey(wishlist,on_delete=models.CASCADE)
     product_wishlist_id = models.ForeignKey(product,on_delete=models.CASCADE)
     createdon = models.DateField()
-    modifiedon = models.DateField()
 
 class cart (models.Model):
     cart_id=models.AutoField(unique=True, db_index=True,primary_key=True)
@@ -81,13 +80,10 @@ class cart_item(models.Model):
     cart_fk=models.ForeignKey(cart,on_delete=models.CASCADE)
     product_cart = models.ForeignKey(product,on_delete=models.CASCADE)
     created_on = models.DateField()
-    modified_on = models.DateField()
 
 class order(models.Model):
     order_id = models.AutoField(unique=True,primary_key=True,db_index=True)
-    order_prod = models.ForeignKey(product,on_delete=models.CASCADE)
-    order_quantity = models.IntegerField()
-    order_price = models.FloatField()
+    cust_order=models.ForeignKey(cart,on_delete=models.CASCADE,default=None)
 
 class sales(models.Model):
     sales_id=models.AutoField(unique=True,primary_key=True,db_index=True)
@@ -136,12 +132,11 @@ class cat6(models.Model):
     img2=models.ImageField(upload_to='pics')
     img3=models.ImageField(upload_to='pics')
 
-class order_details(models.Model):
+class order_items(models.Model):
     order_id=models.AutoField(unique=True,primary_key=True,db_index=True)
-    order_prod=models.ForeignKey(order,on_delete=models.CASCADE)
-    order_quantity=models.IntegerField()
-    order_price=models.FloatField()
-    cust_order=models.ForeignKey(customer,on_delete=models.CASCADE,default=0)
+    order_prod=models.ForeignKey(customer,on_delete=models.CASCADE,default=0)
+    orderedon=models.DateField()
+    order_fk=models.ForeignKey(order,on_delete=models.CASCADE)
 
 class feedback(models.Model):
     feedback_id=models.AutoField(unique=True,primary_key=True,db_index=True)

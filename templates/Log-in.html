@@ -80,9 +80,9 @@ function finalchk()
     <section class="login-clean" style="background: #eccac9;">
         <form name="login_form" method="post" onsubmit="return finalchk()" action="./LoggedIn" style="background: rgba(255,255,255,0.36);box-shadow: 10px 0px 17px 5px #b3375b;border-radius: 8px;width: 1524px;">
              {% csrf_token %}
-        {% if not logstatus %}
+{#        {% if not user %}#}
 {#                <script>alert("Oops! credentials don't match")</script>#}
-        {% endif %}
+{#        {% endif %}#}
             <div class="illustration"><img src="{% static 'img/icon-light-removebg-preview.png' %}" style="font-size: 80px;width: 300px;margin: -25px 0 0 -30px;"></div>
             <pre><label class="form-label" style="font-family: Almendra, serif;font-weight: bold;margin-left: 5%">Email </label></pre>
             <center>

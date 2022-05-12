@@ -1,6 +1,6 @@
 from pydoc import resolve
 from pyexpat.errors import messages
-
+import datetime as dt
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from main_app.models import *
@@ -11,27 +11,27 @@ from django.core.files.storage import FileSystemStorage
 # Create your views here.
 from django.db import connection
 def home(request, cursor=None):
-    context = {'brands': brand.objects.all(), 'category': category.objects.all()}
+    context = {'brands': brand.objects.all(), 'category': category.objects.all(),"user":request.session.get("user_id")}
     return render(request, 'index.html',context)
 
 def userLogin(request):
-    context = {'brands': brand.objects.all(), 'category': category.objects.all(),"logstatus":True}
+    context = {'brands': brand.objects.all(), 'category': category.objects.all()}
     mail = request.POST.get('user_email', None)
     password = request.POST.get('user_password', None)
     if customer.objects.filter(cust_email=mail, cust_pass=password).exists():
         cust=customer.objects.filter(cust_email=mail)
         # isLogin = True
-        context.update({"logstatus":True})
-        request.session["user_id"]=cust[0].cust_id
+        request.session["user_id"] = cust[0].cust_id
+        context.update({"user":request.session.get("user_id")})
         print("you are ",request.session.get("user_id"))
         return render(request, 'index.html', context)
     else:
-        context.update({"logstatus": False})
+        print(request.session.get("user_id"))         #remaining
+        context.update({"user":request.session.get("user_id")})
         return render(request, 'Log-in.html', context)
 
-def insertUser(request):
-    if request.POST.get('userpass', None) == request.POST.get('password2', None):
-        # if not customer.objects.filter(cust_email=request.POST.get('useremail', None).exits()):
+def insertUser(request): #session management remaining
+    if request.POST.get('userpass', None) == request.POST.get('password2', None) and not customer.objects.filter(cust_email=request.POST.get('useremail', None)).exists():
         cust1 = customer()
         cust1.cust_name = request.POST.get('username', None)
         cust1.cust_pass = request.POST.get('userpass', None)
@@ -40,10 +40,12 @@ def insertUser(request):
         cust1.cust_address = request.POST.get('address', None)
         print(cust1)
         cust1.save()
-        context = {'brands': brand.objects.all(), 'category': category.objects.all(),"logstatus":True}
+        request.session["user_id"]=cust1.cust_id
+        print("Session created for ",request.session["user_id"])
+        context = {'brands': brand.objects.all(), 'category': category.objects.all(),"user": request.session.get("user_id")}
         return render(request, 'index.html', context)
     else:
-        print("user is not inserted")
+        print("user is not inserted")  #remaining
         return render(request, 'sign-in.html')
 
 def logout(request):
@@ -65,37 +67,63 @@ def getimage(request):
     return render(request, './index.html',)
 
 def getOrderPage(request):
+    context = {"user":request.session.get("user_id")}
+    flag=False
     if (request.session.has_key('user_id')):
-        context = {}
-        main_id = (request.GET.get('prod_id', None))
-        prod = product.objects.filter(product_id=main_id)[0]
-        imgl = product_image.objects.filter(prod_image=main_id)[0].img1
-        clr = color.objects.filter(prod_color=main_id)[0].color_name
-        prod_desc = product_desc.objects.filter(main_product=main_id)[0]
-        cat = category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
-        pd = user_prod(main_id, prod.product_name, prod.product_description, clr, prod_desc.prod_price,prod.product_offer, prod.product_size, imgl)
-        print(pd)
-        context = {"product": pd}
-        name = "Shrutikas "+prod.product_name
-        subject = "django mail test"+prod.product_description
-        message = f"Dear Shrutika, your order for {prod.product_name} with {prod.product_description} has been successfully placed"
-        print(name, subject, message)
-        send_mail(
-            subject,
-            message,
-            'clothiify@gmail.com',
-            ['mahajanshrutika8@gmail.com'],
-            fail_silently=False,
-        )
-        return render(request,"./order-box.html",context)
+        if (request.GET.get('prod_id', None) != None):
+            o = order()
+            o.cust_order_id = request.session.get("user_id")
+            o.save()
+            oi = order_items()
+            oi.orderedon = dt.datetime.now()
+            oi.order_fk_id = o.order_id
+            oi.order_prod_id = (request.GET.get('prod_id', None))
+            oi.save()
+            flag=True
+        order_prod = []
+        orobj= order.objects.filter(cust_order_id=request.session.get("user_id"))
+        for odr in orobj:
+            orderlistobj = order_items.objects.filter(order_fk_id=odr.order_id)
+            for x in orderlistobj:
+                main_id = x.order_prod_id
+                prod = product.objects.filter(product_id=main_id)[0]
+                imgl = product_image.objects.filter(prod_image=main_id)[0].img1
+                clr = color.objects.filter(prod_color=main_id)[0].color_name
+                prod_desc = product_desc.objects.filter(main_product=main_id)[0]
+                cat = category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
+                pd = user_prod(main_id, prod.product_name, prod.product_description, clr, prod_desc.prod_price,
+                               prod.product_offer, prod.product_size, imgl)
+                order_prod.append(pd)
+        if flag:
+            custobj=customer.objects.filter(cust_id=request.session.get("user_id"))[0]
+            name = custobj.cust_name
+            mail= custobj.cust_email
+            c_name = category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
+            subject = "Order confirmed for "+prod.product_name
+            message = f"Congratulations {name}, \nYour order for {prod.product_name} has been successfully placed!\nDetails of Ordered Product: \nCategory = {c_name.lower()} \nDescription = {prod.product_description}\nSize = {prod.product_size}  \nOrdered on ={dt.date.today()} \nTime = {dt.datetime.now().strftime('%H:%M:%S')}"
+            print(name, subject, message)
+            send_mail(
+                subject,
+                message,
+                'clothiify@gmail.com',
+                [mail],
+                fail_silently=False,
+            )
+        if not order_prod:
+            print(request.session.get("user_id"))
+            return render(request, "./Login(order-empty).html",context)
+        context = {"product": order_prod}
+        return render(request, "./order-box.html", context)
     else:
-        return render(request,'./not-login.html')
+        print(request.session.get("user_id"))
+        return render(request,'./not-login.html',context)
 
 def getAboutPage(request):
-    return render(request,"./About us.html")
+    context={"user":request.session.get("user_id")}
+    return render(request,"./About us.html",context)
 
 def getLoginPage(request):
-    context={'logstatus':True}
+    context={"user":request.session.get("user_id")}
     return render(request,"./Log-in.html",context)
 
 def getSignUp(request):
@@ -539,9 +567,10 @@ def getProducts(request):
             p1 = prod_grid_view(id, x.product_name, prod_des[0].prod_price, prod_img[0].img1, x.product_description)
             prod_l.append(p1)
         context = {"prod_list": prod_l}
-    context.update({'brands':brand.objects.all()})
+    context.update({'brands':brand.objects.all(),"user": request.session.get("user_id")})
     return render(request, "./products.html", context)
 def insertfeedback(request):
+    context={"user":request.session.get("user_id")}
     mail = request.GET.get('email', None)
     msg = request.GET.get('feedback', None)
     f=feedback()
@@ -550,7 +579,7 @@ def insertfeedback(request):
     if(request.session.has_key('user_id')):
         f.cust_feed_id=request.session.get("user_id")
     f.save()
-    return render(request,"./About us.html")
+    return render(request,"./About us.html",context)
 
 def getProductsView(request):
     context={}
@@ -562,7 +591,7 @@ def getProductsView(request):
     cat=category.objects.filter(cat_id=prod.product_cat_id)[0].cat_name
     pd=prod_view(main_id,prod.product_name,prod.product_description,clr,prod_desc.prod_quanitity,prod.product_size,prod.product_offer,prod_desc.prod_price,cat,imgl.img1,imgl.img2,imgl.img3,imgl.img4)
     print(pd)
-    context={"product":pd}
+    context={"product":pd,"user":request.session.get("user_id")}
     return render(request,"./product_details.html",context)
 
 def getBagPage(request):
@@ -574,7 +603,6 @@ def getBagPage(request):
             c.save()
             ci = cart_item()
             ci.created_on = dt.datetime.now()
-            ci.modified_on = dt.datetime.now()
             ci.cart_fk_id = c.cart_id
             ci.product_cart_id = (request.GET.get('prod_id', None))
             ci.save()
@@ -594,7 +622,7 @@ def getBagPage(request):
                 cart_prod.append(pd)
         if not cart_prod:
             return render(request, "./Login(bag-empty).html")
-        context = {"product": cart_prod}
+        context = {"product": cart_prod,"user":request.session.get("user_id")}
         return render(request, "./bag.html", context)
     else:
         return render(request, './not-login.html')
@@ -615,7 +643,6 @@ def getWishlistPage(request):
             w.save()
             wi = wishlist_item()
             wi.createdon=dt.datetime.now()
-            wi.modifiedon=dt.datetime.now()
             wi.wishlist_fk_id=w.wishlist_id
             wi.product_wishlist_id_id=(request.GET.get('prod_id', None))
             wi.save()
@@ -635,7 +662,7 @@ def getWishlistPage(request):
                 wish_prod.append(pd)
         if not wish_prod:
             return render(request, "./Login(wishlist-empty).html")
-        context = {"product":wish_prod}
+        context = {"product":wish_prod,"user":request.session.get("user_id")}
         return render(request,"./wishlist.html",context)
     else:
         return render(request,'./not-login.html')
@@ -646,11 +673,11 @@ def getWishlistremoved(request):
         prod_id = request.GET.get('prod_id', None)
         wishlist_item.objects.filter(product_wishlist_id_id=prod_id).delete()
     return HttpResponseRedirect('/wishlist')
-def getEmptyWishlist(request):
-    return render(request, "./Login(wishlist-empty).html")
+# def getEmptyWishlist(request):
+#     return render(request, "./Login(wishlist-empty).html")
 
-def getEmptyBag(request):
-    return render(request, "./Login(bag-empty).html")
+# def getEmptyBag(request):
+#     return render(request, "./Login(bag-empty).html")
 
 def getBrands(request):
     categoryofhome=(request.GET.get('cat',None))
@@ -680,5 +707,5 @@ def getBrands(request):
         bf = cat6.objects.filter(car6_name="BestOffers")
         gf = cat6.objects.filter(car6_name="Trends")
         context = {'bestoffers': bf, 'trends': gf}
-    context.update({'category':categoryofhome,'brands': brand.objects.all()})
+    context.update({'category':categoryofhome,'brands': brand.objects.all(),"user":request.session.get("user_id")})
     return render(request,"./brand.html",context)

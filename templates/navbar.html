@@ -109,7 +109,7 @@
                 <div class="x-dropdown dropdown">
                     <div class="text-start x-drop-btn" aria-expanded="false" data-bs-toggle="dropdown" style="width: 60px;color: var(--bs-gray-900);height: 60px;margin: 0 0 0 50px;"><i class="fa fa-user-circle-o" data-bs-toggle="tooltip" data-bss-tooltip="" data-bss-hover-animate="tada" style="font-size: 28px;margin: 10px 0px 0px 60px;" title="Profile"></i></div>
                     <div class="dropdown-menu" role="menu">
-                        {% if logstatus %}
+                        {% if user != None %}
                         <a class="dropdown-item" role="presentation" href="./Logout">Log Out</a>
                        {% else %}
                         <a class="dropdown-item" role="presentation" href="./Login">Log-In</a>
