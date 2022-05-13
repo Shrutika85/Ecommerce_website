@@ -1,0 +1,13 @@
+<html>
+<body>
+<script>
+    alert("{{msg}}");
+    if ("{{msg}}" =="Image is blank" || "{{msg}}"=="Invalid Image Extenstion" || "{{msg}}"=="User email already exists" )
+        document.location="./SignUp";
+    else if ("{{msg}}"=="Please check your Email-Id or Password")
+        document.location="./Login";
+    else
+        document.location="./";
+</script>
+</body>
+</html>

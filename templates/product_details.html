@@ -73,10 +73,11 @@
 {#                                        cal(40)#}
 {#                                    </script>#}
 {#                                    {% load mathfilters %}#}
-                                    <li id data-animation="animated fadeInRight" id="pricecol" style="text-align: left;font-family: Alatsi, sans-serif;font-size: 20px;color: #e0a4a4;">Price&nbsp; &nbsp;: calc({{ product.price }} / 2)</li>
+                                    <li id data-animation="animated fadeInRight" id="pricecol" style="text-align: left;font-family: Alatsi, sans-serif;font-size: 20px;color: #e0a4a4;">Price&nbsp; &nbsp;:{{ product.price }})</li>
                                 {% else %}
                                 <li data-animation="animated fadeInRight" style="text-align: left;font-family: Alatsi, sans-serif;font-size: 20px;color: #e0a4a4;">Price&nbsp; &nbsp;: {{ product.price }}</li>
                                 {% endif %}
+
                                 <li data-animation="animated fadeInRight">
                                     {% if product.size == "S" %}
                                         <a class="bs4_modal_trigger" href="#" data-modal-id="bs4_sngl_cmrce" data-toggle="modal" style="width: 40px;height: 40px;margin: 10px 0 0 10px;">S</a>

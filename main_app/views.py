@@ -1,11 +1,13 @@
 from pydoc import resolve
 from pyexpat.errors import messages
 import datetime as dt
+from PIL import Image
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from main_app.models import *
 from django.core.mail import send_mail
 import datetime as dt
+import os
 #from PIL import Image
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
@@ -20,15 +22,14 @@ def userLogin(request):
     password = request.POST.get('user_password', None)
     if customer.objects.filter(cust_email=mail, cust_pass=password).exists():
         cust=customer.objects.filter(cust_email=mail)
-        # isLogin = True
         request.session["user_id"] = cust[0].cust_id
         context.update({"user":request.session.get("user_id")})
         print("you are ",request.session.get("user_id"))
         return render(request, 'index.html', context)
     else:
-        print(request.session.get("user_id"))         #remaining
-        context.update({"user":request.session.get("user_id")})
-        return render(request, 'Log-in.html', context)
+        print(request.session.get("user_id"))
+        context={'msg':"Please check your Email-Id or Password"}
+        return render(request,'alertdisplayer.html',context)
 
 def insertUser(request): #session management remaining
     if request.POST.get('userpass', None) == request.POST.get('password2', None) and not customer.objects.filter(cust_email=request.POST.get('useremail', None)).exists():
@@ -38,15 +39,52 @@ def insertUser(request): #session management remaining
         cust1.cust_email = request.POST.get('useremail', None)
         cust1.cust_contact = request.POST.get('contact', None)
         cust1.cust_address = request.POST.get('address', None)
-        print(cust1)
-        cust1.save()
-        request.session["user_id"]=cust1.cust_id
-        print("Session created for ",request.session["user_id"])
-        context = {'brands': brand.objects.all(), 'category': category.objects.all(),"user": request.session.get("user_id")}
-        return render(request, 'index.html', context)
+
+        if len(request.FILES) != 0:
+            img = request.FILES['filepath']
+            print(img)
+            img_extension = os.path.splitext(img.name)[1]
+            img_name=os.path.splitext(img.name)[0]
+            user_folder = 'static/customer_images/'
+            if not os.path.exists(user_folder):
+                os.mkdir(user_folder)
+            img_save_path = f'{user_folder}/{img_name}{img_extension}'
+            with open(img_save_path, 'wb+') as f:
+                for chunk in img.chunks():
+                    f.write(chunk)
+        if (imgFileValid(img_save_path)):
+            if (imgchker(img_save_path) == None):
+                cust1.save()
+                print("user is inserted")
+                request.session["user_id"]=cust1.cust_id
+                print("Session created for ",request.session["user_id"])
+                context = {'brands': brand.objects.all(), 'category': category.objects.all(),"user": request.session.get("user_id")}
+                return render(request, 'index.html', context)
+            else:
+                context = {'msg': "Image is blank"}
+                print("Image is blank ",context['msg'])
+                return render(request, 'alertdisplayer.html', context)
+        else:
+            context = {'msg': "Invalid Image Extenstion"}
+            print("Invalid Image Extenstion",context['msg'])
+            return render(request, 'alertdisplayer.html', context)
     else:
-        print("user is not inserted")  #remaining
-        return render(request, 'sign-in.html')
+        print("user is already there")
+        print(request.session.get("user_id"))
+        context = {'msg': "User email already exists"}
+        return render(request, 'alertdisplayer.html', context)
+
+
+def imgFileValid(name):
+    try:
+        i=Image.open(name)
+        return i.format in ['JPEG','PNG']
+    except IOError:
+            return False
+
+def imgchker(imgname):
+    img=Image.open(imgname)
+    return img.getcolors()
 
 def logout(request):
     print("you are in logout", request.session.get("user_id"))
@@ -65,7 +103,6 @@ def getimage(request):
         # filePathName=fs.url(filePathName)
         # context = {'filePathName': filePathName}
     return render(request, './index.html',)
-
 def getOrderPage(request):
     context = {"user":request.session.get("user_id")}
     flag=False
@@ -117,18 +154,14 @@ def getOrderPage(request):
     else:
         print(request.session.get("user_id"))
         return render(request,'./not-login.html',context)
-
 def getAboutPage(request):
     context={"user":request.session.get("user_id")}
     return render(request,"./About us.html",context)
-
 def getLoginPage(request):
     context={"user":request.session.get("user_id")}
     return render(request,"./Log-in.html",context)
-
 def getSignUp(request):
-    return render(request,"./sign-in.html")
-
+    return render(request, "./sign-up.html")
 def getProducts(request):
     contentType= (request.GET.get('main', None))
     context = {}
@@ -580,7 +613,6 @@ def insertfeedback(request):
         f.cust_feed_id=request.session.get("user_id")
     f.save()
     return render(request,"./About us.html",context)
-
 def getProductsView(request):
     context={}
     main_id = (request.GET.get('prod_id',None))
@@ -593,7 +625,6 @@ def getProductsView(request):
     print(pd)
     context={"product":pd,"user":request.session.get("user_id")}
     return render(request,"./product_details.html",context)
-
 def getBagPage(request):
     context = {}
     if (request.session.has_key('user_id')):
@@ -626,14 +657,12 @@ def getBagPage(request):
         return render(request, "./bag.html", context)
     else:
         return render(request, './not-login.html')
-
 def getCartremoved(request):
     if (request.session.has_key('user_id')):
         id=request.session.get("user_id")
         prod_id = request.GET.get('prod_id', None)
         cart_item.objects.filter(product_cart_id=prod_id).delete()
     return HttpResponseRedirect('/bag')
-
 def getWishlistPage(request):
     context = {}
     if(request.session.has_key('user_id')):
@@ -666,19 +695,12 @@ def getWishlistPage(request):
         return render(request,"./wishlist.html",context)
     else:
         return render(request,'./not-login.html')
-
 def getWishlistremoved(request):
     if (request.session.has_key('user_id')):
         id=request.session.get("user_id")
         prod_id = request.GET.get('prod_id', None)
         wishlist_item.objects.filter(product_wishlist_id_id=prod_id).delete()
     return HttpResponseRedirect('/wishlist')
-# def getEmptyWishlist(request):
-#     return render(request, "./Login(wishlist-empty).html")
-
-# def getEmptyBag(request):
-#     return render(request, "./Login(bag-empty).html")
-
 def getBrands(request):
     categoryofhome=(request.GET.get('cat',None))
     print(categoryofhome)
